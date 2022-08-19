@@ -42,7 +42,8 @@ export const Register = async (req, res) => {
         name,
         email,
         password,
-        rePassword
+        rePassword,
+        identifier
     } = req.body;
 
     const { error } = await registerValidation(req.body)
@@ -76,15 +77,17 @@ export const Register = async (req, res) => {
     const users = new Users({
         name: name,
         email: email,
-        password: hashPassword
+        password: hashPassword,
+        identifier: identifier,
     })
 
     try {
         const saveUser = await users.save()
+        const searchUser = await Users.findOne({where: {email: email}})
         res.status(200).json({
             status: res.statusCode,
             message: 'Berhasil membuat user baru',
-            data: saveUser
+            data: searchUser
         })
     } catch (err) {
         res.status(400).json({

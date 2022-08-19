@@ -26,7 +26,10 @@ const Users = db.define('users',{
     updatedAt: {
         type: Date,
         default: Date.now(),
-    }
+    },
+    identifier: {
+        type: Int16Array,
+    },
 })
 
 export default Users;
