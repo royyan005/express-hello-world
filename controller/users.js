@@ -42,8 +42,7 @@ export const Register = async (req, res) => {
         name,
         email,
         password,
-        rePassword,
-        identifier
+        rePassword
     } = req.body;
 
     const { error } = await registerValidation(req.body)
@@ -77,8 +76,7 @@ export const Register = async (req, res) => {
     const users = new Users({
         name: name,
         email: email,
-        password: hashPassword,
-        identifier: identifier,
+        password: hashPassword
     })
 
     try {

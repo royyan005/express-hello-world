@@ -6,7 +6,6 @@ export const registerValidation = (data) => {
         email: Joi.string().email().required(),
         password: Joi.string().min(6).required(),
         rePassword: Joi.string().min(6).required(),
-        identifier: Joi.required(),
     })
 
     return schema.validate(data)
