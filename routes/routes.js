@@ -2,6 +2,7 @@ import express from "express";
 import { getToken, getUsers, Register, Login, Logout, Delete } from "../controller/users.js";
 import { verifyToken } from "../middleware/verifyToken.js";
 import { postInventaris, getInventaris, getInventarisById, updateInventaris, deleteInventaris } from "../controller/inventaris.js";
+import { postMahasiswa, getMahasiswa, getMahasiswaById, updateMahasiswa, deleteMahasiswa } from "../controller/mahasiswa.js";
 import { refreshToken } from "../controller/refreshToken.js";
 
 
@@ -17,6 +18,13 @@ router.delete("/logout", Logout);
 // USER
 router.get("/users", verifyToken, getUsers);
 router.delete("/delete", verifyToken, Delete);
+
+// MAHASISWA
+router.post("/mahasiswa", verifyToken, postMahasiswa);
+router.get("/mahasiswa", verifyToken, getMahasiswa);
+router.get("/mahasiswa/:id", verifyToken, getMahasiswaById);
+router.put("/mahasiswa/:id", verifyToken, updateMahasiswa);
+router.delete("/mahasiswa/:id", verifyToken, deleteMahasiswa);
 
 // INVENTARIS
 router.post("/inventaris", verifyToken, postInventaris);
