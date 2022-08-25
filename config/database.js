@@ -9,6 +9,7 @@ const db = new Sequelize('sql6514533','sql6514533','YqamiHVSau',{
     //       rejectUnauthorized: false // This line will fix new error
     //     }
     //   },
+    logQueryParameters: true
 })
 
 export default db;
