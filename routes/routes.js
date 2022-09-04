@@ -1,7 +1,6 @@
 import express from "express";
 import { getToken, getUsers, Register, Login, Logout, Delete } from "../controller/users.js";
 import { verifyToken } from "../middleware/verifyToken.js";
-import { postInventaris, getInventaris, getInventarisById, updateInventaris, deleteInventaris } from "../controller/inventaris.js";
 import { postMahasiswa, getMahasiswa, getMahasiswaById, updateMahasiswa, deleteMahasiswa, postRolePembimbing1, postRolePembimbing2, postRolePenguji} from "../controller/mahasiswa.js";
 import { postMatkul1, postMatkul2, postMatkul3, postMatkul4, postMatkul5, postMatkul6} from "../controller/form.js";
 import { refreshToken } from "../controller/refreshToken.js";
