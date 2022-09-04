@@ -1,4 +1,5 @@
 import Mahasiswa from "../models/mahasiswa.js";
+import Users from "../models/user.js";
 
 export const postMahasiswa = async (req, res) => {
     const {
@@ -135,6 +136,138 @@ export const deleteMahasiswa = async (req, res) => {
             id: req.params.id,
             status: res.statusCode,
             message: 'Gagal menghapus mahasiswa'
+        })
+    }
+}
+
+export const postRolePembimbing1 = async (req, res) => {
+    const refreshToken = req.cookies.refreshToken;
+    if (!refreshToken) return res.status(401).json({
+        status: res.statusCode,
+        message: "Unauthorized"
+    });
+    const user = await Users.findAll({
+        where: {
+            refresh_token: refreshToken
+        }
+    });
+    if (!user[0]) return res.status(403).json({
+        status: res.statusCode,
+        message: "Forbidden"
+    });
+    try {
+        const updateMahasiswa = await Mahasiswa.update({
+            idpembimbing1: user[0].id,
+        }, {
+            where: {
+                id: req.params.id,
+            }
+        });
+        if (updateMahasiswa == 0) return error
+        const searchmahasiswa = await Mahasiswa.findOne({
+            where: {
+                id: req.params.id,
+            }
+        })
+        res.status(200).json({
+            id: req.params.id,
+            status: res.statusCode,
+            message: 'Berhasil memperbarui mahasiswa',
+            data: searchmahasiswa
+        })
+    } catch (err) {
+        res.status(400).json({
+            id: req.params.id,
+            status: res.statusCode,
+            message: 'Gagal memperbarui mahasiswa'
+        })
+    }
+}
+
+export const postRolePembimbing2 = async (req, res) => {
+    const refreshToken = req.cookies.refreshToken;
+    if (!refreshToken) return res.status(401).json({
+        status: res.statusCode,
+        message: "Unauthorized"
+    });
+    const user = await Users.findAll({
+        where: {
+            refresh_token: refreshToken
+        }
+    });
+    if (!user[0]) return res.status(403).json({
+        status: res.statusCode,
+        message: "Forbidden"
+    });
+    try {
+        const updateMahasiswa = await Mahasiswa.update({
+            idpembimbing2: user[0].id,
+        }, {
+            where: {
+                id: req.params.id,
+            }
+        });
+        if (updateMahasiswa == 0) return error
+        const searchmahasiswa = await Mahasiswa.findOne({
+            where: {
+                id: req.params.id,
+            }
+        })
+        res.status(200).json({
+            id: req.params.id,
+            status: res.statusCode,
+            message: 'Berhasil memperbarui mahasiswa',
+            data: searchmahasiswa
+        })
+    } catch (err) {
+        res.status(400).json({
+            id: req.params.id,
+            status: res.statusCode,
+            message: 'Gagal memperbarui mahasiswa'
+        })
+    }
+}
+
+export const postRolePenguji = async (req, res) => {
+    const refreshToken = req.cookies.refreshToken;
+    if (!refreshToken) return res.status(401).json({
+        status: res.statusCode,
+        message: "Unauthorized"
+    });
+    const user = await Users.findAll({
+        where: {
+            refresh_token: refreshToken
+        }
+    });
+    if (!user[0]) return res.status(403).json({
+        status: res.statusCode,
+        message: "Forbidden"
+    });
+    try {
+        const updateMahasiswa = await Mahasiswa.update({
+            idpenguji: user[0].id,
+        }, {
+            where: {
+                id: req.params.id,
+            }
+        });
+        if (updateMahasiswa == 0) return error
+        const searchmahasiswa = await Mahasiswa.findOne({
+            where: {
+                id: req.params.id,
+            }
+        })
+        res.status(200).json({
+            id: req.params.id,
+            status: res.statusCode,
+            message: 'Berhasil memperbarui mahasiswa',
+            data: searchmahasiswa
+        })
+    } catch (err) {
+        res.status(400).json({
+            id: req.params.id,
+            status: res.statusCode,
+            message: 'Gagal memperbarui mahasiswa'
         })
     }
 }
