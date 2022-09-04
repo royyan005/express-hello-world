@@ -1,17 +1,11 @@
 import db from "../config/database.js";
 
-const Matkul5 = db.define('matkul5',{
+const Matkul6 = db.define('matkul5',{
     id: {
         type: Int16Array,
         primaryKey: true,
     },
     sub1: {
-        type: Int16Array,
-    },
-    sub2: {
-        type: Int16Array,
-    },
-    sub3: {
         type: Int16Array,
     },
     total: {
@@ -36,4 +30,4 @@ const Matkul5 = db.define('matkul5',{
     },
 });
 
-export default Matkul5
+export default Matkul6

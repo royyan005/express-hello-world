@@ -8,6 +8,21 @@ const Matkul3 = db.define('matkul3',{
     sub1: {
         type: Int16Array,
     },
+    sub2: {
+        type: Int16Array,
+    },
+    sub21: {
+        type: Int16Array,
+    },
+    sub22: {
+        type: Int16Array,
+    },
+    sub23: {
+        type: Int16Array,
+    },
+    sub24: {
+        type: Int16Array,
+    },
     total: {
         type: Int16Array,
     },
