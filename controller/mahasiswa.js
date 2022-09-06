@@ -271,3 +271,54 @@ export const postRolePenguji = async (req, res) => {
         })
     }
 }
+
+const getPagination = (page, size) => {
+    const limit = size ? +size : 10;
+    const offset = page ? page * limit : 0;
+    return {
+        limit,
+        offset
+    };
+};
+
+const getPagingData = (data, page, limit) => {
+    const {
+        count: totalItems,
+        rows: tutorials
+    } = data;
+    const currentPage = page ? +page : 0;
+    const totalPages = Math.ceil(totalItems / limit);
+    return {
+        totalItems,
+        tutorials,
+        totalPages,
+        currentPage
+    };
+};
+
+export const getMahasiswaPagination = async (req, res) => {
+    const {page, size} = req.query
+    const {limit, offset} = getPagination(page, size)
+
+    try {
+        const mahasiswa = await Mahasiswa.findAndCountAll({
+            limit: limit,
+            offset: offset
+        })
+        .then(data => {
+            const response = getPagingData(data, page, limit)
+            res.status(200).json({
+                id: req.params.id,
+                status: res.statusCode,
+                message: 'Berhasil mendapatkan mahasiswa',
+                data: response
+            })
+        })
+    } catch (err) {
+        res.status(400).json({
+            id: req.params.id,
+            status: res.statusCode,
+            message: 'Gagal mendapatkan mahasiswa'
+        })
+    };
+}
