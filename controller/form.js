@@ -398,3 +398,21 @@ export const postMatkul6 = async (req, res) => {
         })
     };
 }
+
+export const getMatkul = async (req, res) => {
+    var matkul = {}
+    try {
+        const matkul1 = await Matkul1.findAll()
+        matkul.push(matkul1)
+        res.status(200).json({
+            status: res.statusCode,
+            message: 'Berhasil mendapatkan matkul',
+            data: matkul
+        })
+    } catch (err) {
+        res.status(400).json({
+            status: res.statusCode,
+            message: 'Gagal mendapatkan matkul'
+        })
+    };
+}
