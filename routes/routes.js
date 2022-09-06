@@ -2,7 +2,7 @@ import express from "express";
 import { getToken, getUsers, Register, Login, Logout, Delete } from "../controller/users.js";
 import { verifyToken } from "../middleware/verifyToken.js";
 import { postMahasiswa, getMahasiswa, getMahasiswaById, updateMahasiswa, deleteMahasiswa, postRolePembimbing1, postRolePembimbing2, postRolePenguji, getMahasiswaPagination} from "../controller/mahasiswa.js";
-import { postMatkul1, postMatkul2, postMatkul3, postMatkul4, postMatkul5, postMatkul6} from "../controller/form.js";
+import { postMatkul1, postMatkul2, postMatkul3, postMatkul4, postMatkul5, postMatkul6, getMatkul} from "../controller/form.js";
 import { refreshToken } from "../controller/refreshToken.js";
 
 
@@ -37,5 +37,6 @@ router.post("/matkul3/:idmahasiswa", verifyToken, postMatkul3);
 router.post("/matkul4/:idmahasiswa", verifyToken, postMatkul4);
 router.post("/matkul5/:idmahasiswa", verifyToken, postMatkul5);
 router.post("/matkul6/:idmahasiswa", verifyToken, postMatkul6);
+router.get("/matkul", verifyToken, getMatkul);
 
 export default router;

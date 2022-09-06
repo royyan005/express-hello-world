@@ -400,10 +400,22 @@ export const postMatkul6 = async (req, res) => {
 }
 
 export const getMatkul = async (req, res) => {
-    var matkul = {}
+    let matkul = []
     try {
         const matkul1 = await Matkul1.findAll()
-        matkul.push(matkul1)
+        const matkul2 = await Matkul2.findAll()
+        const matkul3 = await Matkul3.findAll()
+        const matkul4 = await Matkul4.findAll()
+        const matkul5 = await Matkul5.findAll()
+        const matkul6 = await Matkul6.findAll()
+        matkul.push({
+            matkul1: matkul1,
+            matkul2: matkul2,
+            matkul3: matkul3,
+            matkul4: matkul4,
+            matkul5: matkul5,
+            matkul6: matkul6
+        })
         res.status(200).json({
             status: res.statusCode,
             message: 'Berhasil mendapatkan matkul',
