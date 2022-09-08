@@ -14,14 +14,10 @@ export const postMatkul1 = async (req, res) => {
         sub3,
         sub4,
     } = req.body;
-    const refreshToken = req.cookies.refreshToken;
-        if(!refreshToken) return res.status(401).json({
-            status: res.statusCode,
-            message: "Unauthorized"
-        });
+    const iduser = req.params.iduser
     const user = await User.findOne({
         where: {
-            refresh_token: refreshToken
+            id: iduser
         }
     })
     if (!user) return res.status(400).json({
@@ -30,7 +26,7 @@ export const postMatkul1 = async (req, res) => {
     })
 
     const total = sub1 + sub2 + sub3 + sub4
-    const average = total/4
+    const average = total / 4
 
     var idmahasiswa = req.params.idmahasiswa
     const mahasiswaExist = await Mahasiswa.findOne({
@@ -38,14 +34,14 @@ export const postMatkul1 = async (req, res) => {
             id: idmahasiswa
         }
     })
-    if (!mahasiswaExist) { 
+    if (!mahasiswaExist) {
         return res.status(400).json({
-        status: res.statusCode,
-        message: 'Mahasiswa tidak ada !'
-    }) } else {
+            status: res.statusCode,
+            message: 'Mahasiswa tidak ada !'
+        })
+    } else {
         idmahasiswa = mahasiswaExist.id
     }
-    const iduser = user.id
 
     const Matkul1Post = new Matkul1({
         sub1: sub1,
@@ -79,14 +75,10 @@ export const postMatkul2 = async (req, res) => {
         sub2,
         sub3,
     } = req.body;
-    const refreshToken = req.cookies.refreshToken;
-        if(!refreshToken) return res.status(401).json({
-            status: res.statusCode,
-            message: "Unauthorized"
-        });
+    const iduser = req.params.iduser
     const user = await User.findOne({
         where: {
-            refresh_token: refreshToken
+            id: iduser
         }
     })
     if (!user) return res.status(400).json({
@@ -95,7 +87,7 @@ export const postMatkul2 = async (req, res) => {
     })
 
     const total = sub1 + sub2 + sub3
-    const average = total/3
+    const average = total / 3
 
     var idmahasiswa = req.params.idmahasiswa
     const mahasiswaExist = await Mahasiswa.findOne({
@@ -103,14 +95,14 @@ export const postMatkul2 = async (req, res) => {
             id: idmahasiswa
         }
     })
-    if (!mahasiswaExist) { 
+    if (!mahasiswaExist) {
         return res.status(400).json({
-        status: res.statusCode,
-        message: 'Mahasiswa tidak ada !'
-    }) } else {
+            status: res.statusCode,
+            message: 'Mahasiswa tidak ada !'
+        })
+    } else {
         idmahasiswa = mahasiswaExist.id
     }
-    const iduser = user.id
 
     const Matkul2Post = new Matkul2({
         sub1: sub1,
@@ -145,24 +137,20 @@ export const postMatkul3 = async (req, res) => {
         sub23,
         sub24
     } = req.body;
-    const refreshToken = req.cookies.refreshToken;
-        if(!refreshToken) return res.status(401).json({
-            status: res.statusCode,
-            message: "Unauthorized"
-        });
+    const iduser = req.params.iduser
     const user = await User.findOne({
         where: {
-            refresh_token: refreshToken
+            id: iduser
         }
     })
     if (!user) return res.status(400).json({
         status: res.statusCode,
         message: 'User tidak ada !'
     })
-    
-    const sub2 = (sub21+sub22+sub23+sub24)/4
+
+    const sub2 = (sub21 + sub22 + sub23 + sub24) / 4
     const total = sub1 + sub2
-    const average = total/2
+    const average = total / 2
 
     var idmahasiswa = req.params.idmahasiswa
     const mahasiswaExist = await Mahasiswa.findOne({
@@ -170,14 +158,14 @@ export const postMatkul3 = async (req, res) => {
             id: idmahasiswa
         }
     })
-    if (!mahasiswaExist) { 
+    if (!mahasiswaExist) {
         return res.status(400).json({
-        status: res.statusCode,
-        message: 'Mahasiswa tidak ada !'
-    }) } else {
+            status: res.statusCode,
+            message: 'Mahasiswa tidak ada !'
+        })
+    } else {
         idmahasiswa = mahasiswaExist.id
     }
-    const iduser = user.id
 
     const Matkul3Post = new Matkul3({
         sub1: sub1,
@@ -214,22 +202,18 @@ export const postMatkul4 = async (req, res) => {
         sub13,
         sub14
     } = req.body;
-    const refreshToken = req.cookies.refreshToken;
-        if(!refreshToken) return res.status(401).json({
-            status: res.statusCode,
-            message: "Unauthorized"
-        });
+    const iduser = req.params.iduser
     const user = await User.findOne({
         where: {
-            refresh_token: refreshToken
+            id: iduser
         }
     })
     if (!user) return res.status(400).json({
         status: res.statusCode,
         message: 'User tidak ada !'
     })
-    
-    const sub1 = (sub11+sub12+sub13+sub14)/4
+
+    const sub1 = (sub11 + sub12 + sub13 + sub14) / 4
     const total = sub1
     const average = total
 
@@ -239,14 +223,14 @@ export const postMatkul4 = async (req, res) => {
             id: idmahasiswa
         }
     })
-    if (!mahasiswaExist) { 
+    if (!mahasiswaExist) {
         return res.status(400).json({
-        status: res.statusCode,
-        message: 'Mahasiswa tidak ada !'
-    }) } else {
+            status: res.statusCode,
+            message: 'Mahasiswa tidak ada !'
+        })
+    } else {
         idmahasiswa = mahasiswaExist.id
     }
-    const iduser = user.id
 
     const Matkul4Post = new Matkul4({
         sub1: sub1,
@@ -281,23 +265,19 @@ export const postMatkul5 = async (req, res) => {
         sub2,
         sub3,
     } = req.body;
-    const refreshToken = req.cookies.refreshToken;
-        if(!refreshToken) return res.status(401).json({
-            status: res.statusCode,
-            message: "Unauthorized"
-        });
+    const iduser = req.params.iduser
     const user = await User.findOne({
         where: {
-            refresh_token: refreshToken
+            id: iduser
         }
     })
     if (!user) return res.status(400).json({
         status: res.statusCode,
         message: 'User tidak ada !'
     })
-    
+
     const total = sub1 + sub2 + sub3
-    const average = total/3
+    const average = total / 3
 
     var idmahasiswa = req.params.idmahasiswa
     const mahasiswaExist = await Mahasiswa.findOne({
@@ -305,14 +285,14 @@ export const postMatkul5 = async (req, res) => {
             id: idmahasiswa
         }
     })
-    if (!mahasiswaExist) { 
+    if (!mahasiswaExist) {
         return res.status(400).json({
-        status: res.statusCode,
-        message: 'Mahasiswa tidak ada !'
-    }) } else {
+            status: res.statusCode,
+            message: 'Mahasiswa tidak ada !'
+        })
+    } else {
         idmahasiswa = mahasiswaExist.id
     }
-    const iduser = user.id
 
     const Matkul5Post = new Matkul5({
         sub1: sub1,
@@ -343,21 +323,17 @@ export const postMatkul6 = async (req, res) => {
     const {
         sub1,
     } = req.body;
-    const refreshToken = req.cookies.refreshToken;
-        if(!refreshToken) return res.status(401).json({
-            status: res.statusCode,
-            message: "Unauthorized"
-        });
+    const iduser = req.params.iduser
     const user = await User.findOne({
         where: {
-            refresh_token: refreshToken
+            id: iduser
         }
     })
     if (!user) return res.status(400).json({
         status: res.statusCode,
         message: 'User tidak ada !'
     })
-    
+
     const total = sub1
     const average = total
 
@@ -367,14 +343,14 @@ export const postMatkul6 = async (req, res) => {
             id: idmahasiswa
         }
     })
-    if (!mahasiswaExist) { 
+    if (!mahasiswaExist) {
         return res.status(400).json({
-        status: res.statusCode,
-        message: 'Mahasiswa tidak ada !'
-    }) } else {
+            status: res.statusCode,
+            message: 'Mahasiswa tidak ada !'
+        })
+    } else {
         idmahasiswa = mahasiswaExist.id
     }
-    const iduser = user.id
 
     const Matkul6Post = new Matkul6({
         sub1: sub1,
@@ -400,14 +376,70 @@ export const postMatkul6 = async (req, res) => {
 }
 
 export const getMatkul = async (req, res) => {
+    const iduser = req.params.iduser
+    const user = await User.findOne({
+        where: {
+            id: iduser
+        }
+    })
+    if (!user) return res.status(400).json({
+        status: res.statusCode,
+        message: 'User tidak ada !'
+    })
+
+    var idmahasiswa = req.params.idmahasiswa
+    const mahasiswaExist = await Mahasiswa.findOne({
+        where: {
+            id: idmahasiswa
+        }
+    })
+    if (!mahasiswaExist) {
+        return res.status(400).json({
+            status: res.statusCode,
+            message: 'Mahasiswa tidak ada !'
+        })
+    } else {
+        idmahasiswa = mahasiswaExist.id
+    }
+
     let matkul = []
     try {
-        const matkul1 = await Matkul1.findAll()
-        const matkul2 = await Matkul2.findAll()
-        const matkul3 = await Matkul3.findAll()
-        const matkul4 = await Matkul4.findAll()
-        const matkul5 = await Matkul5.findAll()
-        const matkul6 = await Matkul6.findAll()
+        const matkul1 = await Matkul1.findAll({
+            where: {
+                iduser: iduser,
+                idmahasiswa: idmahasiswa
+            }
+        })
+        const matkul2 = await Matkul2.findAll({
+            where: {
+                iduser: iduser,
+                idmahasiswa: idmahasiswa
+            }
+        })
+        const matkul3 = await Matkul3.findAll({
+            where: {
+                iduser: iduser,
+                idmahasiswa: idmahasiswa
+            }
+        })
+        const matkul4 = await Matkul4.findAll({
+            where: {
+                iduser: iduser,
+                idmahasiswa: idmahasiswa
+            }
+        })
+        const matkul5 = await Matkul5.findAll({
+            where: {
+                iduser: iduser,
+                idmahasiswa: idmahasiswa
+            }
+        })
+        const matkul6 = await Matkul6.findAll({
+            where: {
+                iduser: iduser,
+                idmahasiswa: idmahasiswa
+            }
+        })
         matkul.push({
             matkul1: matkul1,
             matkul2: matkul2,
