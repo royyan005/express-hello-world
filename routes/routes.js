@@ -31,12 +31,12 @@ router.post("/mahasiswa/:id/pembimbing2", verifyToken, postRolePembimbing2);
 router.post("/mahasiswa/:id/penguji", verifyToken, postRolePenguji);
 
 // FORM SUBMIT
-router.post("/matkul1/:idmahasiswa", verifyToken, postMatkul1);
-router.post("/matkul2/:idmahasiswa", verifyToken, postMatkul2);
-router.post("/matkul3/:idmahasiswa", verifyToken, postMatkul3);
-router.post("/matkul4/:idmahasiswa", verifyToken, postMatkul4);
-router.post("/matkul5/:idmahasiswa", verifyToken, postMatkul5);
-router.post("/matkul6/:idmahasiswa", verifyToken, postMatkul6);
-router.get("/matkul", verifyToken, getMatkul);
+router.post("/matkul1/iduser/:iduser/idmahasiswa/:idmahasiswa", verifyToken, postMatkul1);
+router.post("/matkul2/iduser/:iduser/idmahasiswa/:idmahasiswa", verifyToken, postMatkul2);
+router.post("/matkul3/iduser/:iduser/idmahasiswa/:idmahasiswa", verifyToken, postMatkul3);
+router.post("/matkul4/iduser/:iduser/idmahasiswa/:idmahasiswa", verifyToken, postMatkul4);
+router.post("/matkul5/iduser/:iduser/idmahasiswa/:idmahasiswa", verifyToken, postMatkul5);
+router.post("/matkul6/iduser/:iduser/idmahasiswa/:idmahasiswa", verifyToken, postMatkul6);
+router.get("/matkul/iduser/:iduser/idmahasiswa/:idmahasiswa", verifyToken, getMatkul);
 
 export default router;
