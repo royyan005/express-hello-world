@@ -29,6 +29,9 @@ const Matkul3 = db.define('matkul3',{
     average: {
         type: Float32Array,
     },
+    hurufmutu: {
+        type: String,
+    },
     idmahasiswa: {
         type: Int16Array,
     },
