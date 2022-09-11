@@ -27,6 +27,28 @@ export const postMatkul1 = async (req, res) => {
 
     const total = sub1 + sub2 + sub3 + sub4
     const average = total / 4
+    var hurufmutu = ''
+
+    if (average <= 100 && average >= 81) {
+        hurufmutu = 'A'
+    } else if (average <= 80 && average >= 75) {
+        hurufmutu = 'B+'
+    } else if (average <= 74 && average >= 70) {
+        hurufmutu = 'B'
+    } else if (average <= 69 && average >= 65) {
+        hurufmutu = 'C+'
+    } else if (average <= 64 && average >= 55) {
+        hurufmutu = 'C'
+    } else if (average <= 54 && average >= 50) {
+        hurufmutu = 'D'
+    } else if (average <= 49 && average >= 0) {
+        hurufmutu = 'E'
+    } else {
+        return res.status(400).json({
+            status: res.statusCode,
+            message: 'Nilai Tidak Valid'
+        })
+    }
 
     var idmahasiswa = req.params.idmahasiswa
     const mahasiswaExist = await Mahasiswa.findOne({
@@ -50,6 +72,7 @@ export const postMatkul1 = async (req, res) => {
         sub4: sub4,
         total: total,
         average: average,
+        hurufmutu: hurufmutu,
         iduser: iduser,
         idmahasiswa: idmahasiswa,
     });
@@ -88,6 +111,28 @@ export const postMatkul2 = async (req, res) => {
 
     const total = sub1 + sub2 + sub3
     const average = total / 3
+    var hurufmutu = ''
+
+    if (average <= 100 && average >= 81) {
+        hurufmutu = 'A'
+    } else if (average <= 80 && average >= 75) {
+        hurufmutu = 'B+'
+    } else if (average <= 74 && average >= 70) {
+        hurufmutu = 'B'
+    } else if (average <= 69 && average >= 65) {
+        hurufmutu = 'C+'
+    } else if (average <= 64 && average >= 55) {
+        hurufmutu = 'C'
+    } else if (average <= 54 && average >= 50) {
+        hurufmutu = 'D'
+    } else if (average <= 49 && average >= 0) {
+        hurufmutu = 'E'
+    } else {
+        return res.status(400).json({
+            status: res.statusCode,
+            message: 'Nilai Tidak Valid'
+        })
+    }
 
     var idmahasiswa = req.params.idmahasiswa
     const mahasiswaExist = await Mahasiswa.findOne({
@@ -110,6 +155,7 @@ export const postMatkul2 = async (req, res) => {
         sub3: sub3,
         total: total,
         average: average,
+        hurufmutu: hurufmutu,
         iduser: iduser,
         idmahasiswa: idmahasiswa,
     });
@@ -151,6 +197,28 @@ export const postMatkul3 = async (req, res) => {
     const sub2 = (sub21 + sub22 + sub23 + sub24) / 4
     const total = sub1 + sub2
     const average = total / 2
+    var hurufmutu = ''
+
+    if (average <= 100 && average >= 81) {
+        hurufmutu = 'A'
+    } else if (average <= 80 && average >= 75) {
+        hurufmutu = 'B+'
+    } else if (average <= 74 && average >= 70) {
+        hurufmutu = 'B'
+    } else if (average <= 69 && average >= 65) {
+        hurufmutu = 'C+'
+    } else if (average <= 64 && average >= 55) {
+        hurufmutu = 'C'
+    } else if (average <= 54 && average >= 50) {
+        hurufmutu = 'D'
+    } else if (average <= 49 && average >= 0) {
+        hurufmutu = 'E'
+    } else {
+        return res.status(400).json({
+            status: res.statusCode,
+            message: 'Nilai Tidak Valid'
+        })
+    }
 
     var idmahasiswa = req.params.idmahasiswa
     const mahasiswaExist = await Mahasiswa.findOne({
@@ -176,6 +244,7 @@ export const postMatkul3 = async (req, res) => {
         sub24: sub24,
         total: total,
         average: average,
+        hurufmutu: hurufmutu,
         iduser: iduser,
         idmahasiswa: idmahasiswa,
     });
@@ -216,6 +285,28 @@ export const postMatkul4 = async (req, res) => {
     const sub1 = (sub11 + sub12 + sub13 + sub14) / 4
     const total = sub1
     const average = total
+    var hurufmutu = ''
+
+    if (average <= 100 && average >= 81) {
+        hurufmutu = 'A'
+    } else if (average <= 80 && average >= 75) {
+        hurufmutu = 'B+'
+    } else if (average <= 74 && average >= 70) {
+        hurufmutu = 'B'
+    } else if (average <= 69 && average >= 65) {
+        hurufmutu = 'C+'
+    } else if (average <= 64 && average >= 55) {
+        hurufmutu = 'C'
+    } else if (average <= 54 && average >= 50) {
+        hurufmutu = 'D'
+    } else if (average <= 49 && average >= 0) {
+        hurufmutu = 'E'
+    } else {
+        return res.status(400).json({
+            status: res.statusCode,
+            message: 'Nilai Tidak Valid'
+        })
+    }
 
     var idmahasiswa = req.params.idmahasiswa
     const mahasiswaExist = await Mahasiswa.findOne({
@@ -240,6 +331,7 @@ export const postMatkul4 = async (req, res) => {
         sub14: sub14,
         total: total,
         average: average,
+        hurufmutu: hurufmutu,
         iduser: iduser,
         idmahasiswa: idmahasiswa,
     });
@@ -278,6 +370,28 @@ export const postMatkul5 = async (req, res) => {
 
     const total = sub1 + sub2 + sub3
     const average = total / 3
+    var hurufmutu = ''
+
+    if (average <= 100 && average >= 81) {
+        hurufmutu = 'A'
+    } else if (average <= 80 && average >= 75) {
+        hurufmutu = 'B+'
+    } else if (average <= 74 && average >= 70) {
+        hurufmutu = 'B'
+    } else if (average <= 69 && average >= 65) {
+        hurufmutu = 'C+'
+    } else if (average <= 64 && average >= 55) {
+        hurufmutu = 'C'
+    } else if (average <= 54 && average >= 50) {
+        hurufmutu = 'D'
+    } else if (average <= 49 && average >= 0) {
+        hurufmutu = 'E'
+    } else {
+        return res.status(400).json({
+            status: res.statusCode,
+            message: 'Nilai Tidak Valid'
+        })
+    }
 
     var idmahasiswa = req.params.idmahasiswa
     const mahasiswaExist = await Mahasiswa.findOne({
@@ -300,6 +414,7 @@ export const postMatkul5 = async (req, res) => {
         sub3: sub3,
         total: total,
         average: average,
+        hurufmutu: hurufmutu,
         iduser: iduser,
         idmahasiswa: idmahasiswa,
     });
@@ -336,6 +451,28 @@ export const postMatkul6 = async (req, res) => {
 
     const total = sub1
     const average = total
+    var hurufmutu = ''
+
+    if (average <= 100 && average >= 81) {
+        hurufmutu = 'A'
+    } else if (average <= 80 && average >= 75) {
+        hurufmutu = 'B+'
+    } else if (average <= 74 && average >= 70) {
+        hurufmutu = 'B'
+    } else if (average <= 69 && average >= 65) {
+        hurufmutu = 'C+'
+    } else if (average <= 64 && average >= 55) {
+        hurufmutu = 'C'
+    } else if (average <= 54 && average >= 50) {
+        hurufmutu = 'D'
+    } else if (average <= 49 && average >= 0) {
+        hurufmutu = 'E'
+    } else {
+        return res.status(400).json({
+            status: res.statusCode,
+            message: 'Nilai Tidak Valid'
+        })
+    }
 
     var idmahasiswa = req.params.idmahasiswa
     const mahasiswaExist = await Mahasiswa.findOne({
@@ -356,6 +493,7 @@ export const postMatkul6 = async (req, res) => {
         sub1: sub1,
         total: total,
         average: average,
+        hurufmutu: hurufmutu,
         iduser: iduser,
         idmahasiswa: idmahasiswa,
     });
