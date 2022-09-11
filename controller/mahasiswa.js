@@ -1,5 +1,8 @@
 import Mahasiswa from "../models/mahasiswa.js";
 import Users from "../models/user.js";
+import {
+    Op
+} from "sequelize"
 
 export const postMahasiswa = async (req, res) => {
     const {
@@ -284,36 +287,88 @@ const getPagination = (page, size) => {
 const getPagingData = (data, page, limit) => {
     const {
         count: totalItems,
-        rows: tutorials
+        rows: mahasiswa
     } = data;
     const currentPage = page ? +page : 0;
     const totalPages = Math.ceil(totalItems / limit);
     return {
         totalItems,
-        tutorials,
+        mahasiswa,
         totalPages,
         currentPage
     };
 };
 
 export const getMahasiswaPagination = async (req, res) => {
-    const {page, size} = req.query
-    const {limit, offset} = getPagination(page, size)
+    const {
+        page,
+        size
+    } = req.query
+    const {
+        limit,
+        offset
+    } = getPagination(page, size)
 
     try {
         const mahasiswa = await Mahasiswa.findAndCountAll({
-            limit: limit,
-            offset: offset
-        })
-        .then(data => {
-            const response = getPagingData(data, page, limit)
-            res.status(200).json({
-                id: req.params.id,
-                status: res.statusCode,
-                message: 'Berhasil mendapatkan mahasiswa',
-                data: response
+                limit: limit,
+                offset: offset
             })
+            .then(data => {
+                const response = getPagingData(data, page, limit)
+                res.status(200).json({
+                    id: req.params.id,
+                    status: res.statusCode,
+                    message: 'Berhasil mendapatkan mahasiswa',
+                    data: response
+                })
+            })
+    } catch (err) {
+        res.status(400).json({
+            id: req.params.id,
+            status: res.statusCode,
+            message: 'Gagal mendapatkan mahasiswa'
         })
+    };
+}
+
+export const searchMahasiswaPagination = async (req, res) => {
+    const {
+        page,
+        size,
+        search
+    } = req.query
+    const {
+        limit,
+        offset
+    } = getPagination(page, size)
+
+    try {
+        const mahasiswa = await Mahasiswa.findAndCountAll({
+                limit: limit,
+                offset: offset,
+                where: {
+                    [Op.or]: [{
+                        npm: {
+                            [Op.like]: `%${search}%`
+                        }
+                    },
+                    {
+                        nama: {
+                            [Op.like]: `%${search}%`
+                        }
+                    }]
+                }
+            })
+            .then(data => {
+                const response = getPagingData(data, page, limit)
+                res.status(200).json({
+                    id: req.params.id,
+                    status: res.statusCode,
+                    message: 'Berhasil mendapatkan mahasiswa',
+                    data: response
+                })
+            })
     } catch (err) {
         res.status(400).json({
             id: req.params.id,
