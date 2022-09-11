@@ -1,7 +1,7 @@
 import express from "express";
 import { getToken, getUsers, Register, Login, Logout, Delete } from "../controller/users.js";
 import { verifyToken } from "../middleware/verifyToken.js";
-import { postMahasiswa, getMahasiswa, getMahasiswaById, updateMahasiswa, deleteMahasiswa, postRolePembimbing1, postRolePembimbing2, postRolePenguji, getMahasiswaPagination} from "../controller/mahasiswa.js";
+import { postMahasiswa, getMahasiswa, getMahasiswaById, updateMahasiswa, deleteMahasiswa, postRolePembimbing1, postRolePembimbing2, postRolePenguji, getMahasiswaPagination, searchMahasiswaPagination} from "../controller/mahasiswa.js";
 import { postMatkul1, postMatkul2, postMatkul3, postMatkul4, postMatkul5, postMatkul6, getMatkul} from "../controller/form.js";
 import { refreshToken } from "../controller/refreshToken.js";
 
@@ -24,6 +24,7 @@ router.post("/mahasiswa", verifyToken, postMahasiswa);
 router.get("/mahasiswa", verifyToken, getMahasiswa);
 router.get("/mahasiswa/:id", verifyToken, getMahasiswaById);
 router.get("/pagination/mahasiswa", verifyToken, getMahasiswaPagination);
+router.get("/search/mahasiswa", verifyToken, searchMahasiswaPagination);
 router.put("/mahasiswa/:id", verifyToken, updateMahasiswa);
 router.delete("/mahasiswa/:id", verifyToken, deleteMahasiswa);
 router.post("/mahasiswa/:id/pembimbing1", verifyToken, postRolePembimbing1);
