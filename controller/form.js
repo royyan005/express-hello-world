@@ -669,7 +669,7 @@ export const deleteMatkul = async (req, res) => {
                 }
             });
         }
-        
+
         if (mahasiswa[0].idpenguji == req.params.iduser) {
             const updateMahasiswa = await Mahasiswa.update({
                 idpenguji: null
@@ -686,44 +686,36 @@ export const deleteMatkul = async (req, res) => {
                 idmahasiswa: req.params.idmahasiswa
             }
         });
-        if (deleteMatkul1 == 0) return error
         const deleteMatkul2 = await Matkul2.destroy({
             where: {
                 iduser: req.params.iduser,
                 idmahasiswa: req.params.idmahasiswa
             }
         });
-        if (deleteMatkul2 == 0) return error
         const deleteMatkul3 = await Matkul3.destroy({
             where: {
                 iduser: req.params.iduser,
                 idmahasiswa: req.params.idmahasiswa
             }
         });
-        if (deleteMatkul3 == 0) return error
         const deleteMatkul4 = await Matkul4.destroy({
             where: {
                 iduser: req.params.iduser,
                 idmahasiswa: req.params.idmahasiswa
             }
         });
-        if (deleteMatkul4 == 0) return error
         const deleteMatkul5 = await Matkul5.destroy({
             where: {
                 iduser: req.params.iduser,
                 idmahasiswa: req.params.idmahasiswa
             }
         });
-        if (deleteMatkul5 == 0) return error
         const deleteMatkul6 = await Matkul6.destroy({
             where: {
                 iduser: req.params.iduser,
                 idmahasiswa: req.params.idmahasiswa
             }
         });
-        if (deleteMatkul6 == 0) return error
-
-        
 
         res.status(200).json({
             status: res.statusCode,
