@@ -10,9 +10,13 @@ import Mahasiswa from "../models/mahasiswa.js";
 export const postMatkul1 = async (req, res) => {
     const {
         sub1,
+        valuesub1,
         sub2,
+        valuesub2,
         sub3,
+        valuesub3,
         sub4,
+        valuesub4,
     } = req.body;
     const iduser = req.params.iduser
     const user = await User.findOne({
@@ -67,9 +71,13 @@ export const postMatkul1 = async (req, res) => {
 
     const Matkul1Post = new Matkul1({
         sub1: sub1,
+        valuesub1: valuesub1,
         sub2: sub2,
+        valuesub2: valuesub2,
         sub3: sub3,
+        valuesub3: valuesub3,
         sub4: sub4,
+        valuesub4: valuesub4,
         total: total,
         average: average,
         hurufmutu: hurufmutu,
@@ -95,8 +103,11 @@ export const postMatkul1 = async (req, res) => {
 export const postMatkul2 = async (req, res) => {
     const {
         sub1,
+        valuesub1,
         sub2,
+        valuesub2,
         sub3,
+        valuesub3,
     } = req.body;
     const iduser = req.params.iduser
     const user = await User.findOne({
@@ -151,8 +162,11 @@ export const postMatkul2 = async (req, res) => {
 
     const Matkul2Post = new Matkul2({
         sub1: sub1,
+        valuesub1: valuesub1,
         sub2: sub2,
+        valuesub2: valuesub2,
         sub3: sub3,
+        valuesub3: valuesub3,
         total: total,
         average: average,
         hurufmutu: hurufmutu,
@@ -178,10 +192,15 @@ export const postMatkul2 = async (req, res) => {
 export const postMatkul3 = async (req, res) => {
     const {
         sub1,
+        valuesub1,
         sub21,
+        valuesub21,
         sub22,
+        valuesub22,
         sub23,
-        sub24
+        valuesub23,
+        sub24,
+        valuesub24,
     } = req.body;
     const iduser = req.params.iduser
     const user = await User.findOne({
@@ -237,11 +256,16 @@ export const postMatkul3 = async (req, res) => {
 
     const Matkul3Post = new Matkul3({
         sub1: sub1,
+        valuesub1: valuesub1,
         sub2: sub2,
         sub21: sub21,
+        valuesub21: valuesub21,
         sub22: sub22,
+        valuesub22: valuesub22,
         sub23: sub23,
+        valuesub23: valuesub23,
         sub24: sub24,
+        valuesub24: valuesub24,
         total: total,
         average: average,
         hurufmutu: hurufmutu,
@@ -267,9 +291,13 @@ export const postMatkul3 = async (req, res) => {
 export const postMatkul4 = async (req, res) => {
     const {
         sub11,
+        valuesub11,
         sub12,
+        valuesub12,
         sub13,
-        sub14
+        valuesub13,
+        sub14,
+        valuesub14,
     } = req.body;
     const iduser = req.params.iduser
     const user = await User.findOne({
@@ -326,9 +354,13 @@ export const postMatkul4 = async (req, res) => {
     const Matkul4Post = new Matkul4({
         sub1: sub1,
         sub11: sub11,
+        valuesub11: valuesub11,
         sub12: sub12,
+        valuesub12: valuesub12,
         sub13: sub13,
+        valuesub13: valuesub13,
         sub14: sub14,
+        valuesub14: valuesub14,
         total: total,
         average: average,
         hurufmutu: hurufmutu,
@@ -354,8 +386,11 @@ export const postMatkul4 = async (req, res) => {
 export const postMatkul5 = async (req, res) => {
     const {
         sub1,
+        valuesub1,
         sub2,
+        valuesub2,
         sub3,
+        valuesub3,
     } = req.body;
     const iduser = req.params.iduser
     const user = await User.findOne({
@@ -410,8 +445,11 @@ export const postMatkul5 = async (req, res) => {
 
     const Matkul5Post = new Matkul5({
         sub1: sub1,
+        valuesub1: valuesub1,
         sub2: sub2,
+        valuesub2: valuesub2,
         sub3: sub3,
+        valuesub3: valuesub3,
         total: total,
         average: average,
         hurufmutu: hurufmutu,
@@ -437,6 +475,7 @@ export const postMatkul5 = async (req, res) => {
 export const postMatkul6 = async (req, res) => {
     const {
         sub1,
+        valuesub1
     } = req.body;
     const iduser = req.params.iduser
     const user = await User.findOne({
@@ -491,6 +530,7 @@ export const postMatkul6 = async (req, res) => {
 
     const Matkul6Post = new Matkul6({
         sub1: sub1,
+        valuesub1: valuesub1,
         total: total,
         average: average,
         hurufmutu: hurufmutu,

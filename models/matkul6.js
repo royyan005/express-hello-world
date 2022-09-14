@@ -31,6 +31,9 @@ const Matkul6 = db.define('matkul6',{
         type: Date,
         default: Date.now(),
     },
+    valuesub1: {
+        type: Int16Array,
+    },
 });
 
 export default Matkul6
