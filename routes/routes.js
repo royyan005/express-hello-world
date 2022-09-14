@@ -1,8 +1,8 @@
 import express from "express";
-import { getToken, getUsers, Register, Login, Logout, Delete } from "../controller/users.js";
+import { getToken, getUsers, getUsersById, Register, Login, Logout, Delete } from "../controller/users.js";
 import { verifyToken } from "../middleware/verifyToken.js";
 import { postMahasiswa, getMahasiswa, getMahasiswaById, updateMahasiswa, deleteMahasiswa, postRolePembimbing1, postRolePembimbing2, postRolePenguji, getMahasiswaPagination, searchMahasiswaPagination} from "../controller/mahasiswa.js";
-import { postMatkul1, postMatkul2, postMatkul3, postMatkul4, postMatkul5, postMatkul6, getMatkul} from "../controller/form.js";
+import { postMatkul1, postMatkul2, postMatkul3, postMatkul4, postMatkul5, postMatkul6, getMatkul, deleteMatkul} from "../controller/form.js";
 import { refreshToken } from "../controller/refreshToken.js";
 
 
@@ -17,6 +17,7 @@ router.delete("/logout", Logout);
 
 // USER
 router.get("/users", verifyToken, getUsers);
+router.get("/users/:id", verifyToken, getUsersById);
 router.delete("/delete", verifyToken, Delete);
 
 // MAHASISWA
@@ -39,5 +40,6 @@ router.post("/matkul4/iduser/:iduser/idmahasiswa/:idmahasiswa", verifyToken, pos
 router.post("/matkul5/iduser/:iduser/idmahasiswa/:idmahasiswa", verifyToken, postMatkul5);
 router.post("/matkul6/iduser/:iduser/idmahasiswa/:idmahasiswa", verifyToken, postMatkul6);
 router.get("/matkul/iduser/:iduser/idmahasiswa/:idmahasiswa", verifyToken, getMatkul);
+router.delete("/matkul/iduser/:iduser/idmahasiswa/:idmahasiswa", verifyToken, deleteMatkul);
 
 export default router;

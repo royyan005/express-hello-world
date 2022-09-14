@@ -37,6 +37,23 @@ export const getUsers = async (req, res) => {
     }
 }
 
+export const getUsersById = async (req, res) => {
+    try {
+        const users = await Users.findOne({
+            where: {
+                id: req.params.id
+            }
+        });
+        return res.status(200).json({
+            status: res.statusCode,
+            message: "Sukses",
+            data: users
+        });
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 export const Register = async (req, res) => {
     const {
         name,
