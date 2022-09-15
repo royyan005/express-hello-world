@@ -28,9 +28,9 @@ router.get("/pagination/mahasiswa", verifyToken, getMahasiswaPagination);
 router.get("/search/mahasiswa", verifyToken, searchMahasiswaPagination);
 router.put("/mahasiswa/:id", verifyToken, updateMahasiswa);
 router.delete("/mahasiswa/:id", verifyToken, deleteMahasiswa);
-router.post("/mahasiswa/:id/pembimbing1", verifyToken, postRolePembimbing1);
-router.post("/mahasiswa/:id/pembimbing2", verifyToken, postRolePembimbing2);
-router.post("/mahasiswa/:id/penguji", verifyToken, postRolePenguji);
+router.post("/mahasiswa/:idmahasiswa/pembimbing1/:iduser", verifyToken, postRolePembimbing1);
+router.post("/mahasiswa/:idmahasiswa/pembimbing2/:iduser", verifyToken, postRolePembimbing2);
+router.post("/mahasiswa/:idmahasiswa/penguji/:iduser", verifyToken, postRolePenguji);
 
 // FORM SUBMIT
 router.post("/matkul1/iduser/:iduser/idmahasiswa/:idmahasiswa", verifyToken, postMatkul1);

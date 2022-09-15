@@ -144,43 +144,57 @@ export const deleteMahasiswa = async (req, res) => {
 }
 
 export const postRolePembimbing1 = async (req, res) => {
-    const refreshToken = req.cookies.refreshToken;
-    if (!refreshToken) return res.status(401).json({
-        status: res.statusCode,
-        message: "Unauthorized"
-    });
-    const user = await Users.findAll({
+    const { iduser, idmahasiswa } = req.params
+    
+    const pembimbing1Exist = await Mahasiswa.findOne({
         where: {
-            refresh_token: refreshToken
+            idpembimbing1: null,
+            id: idmahasiswa
         }
-    });
-    if (!user[0]) return res.status(403).json({
+    })
+    if (!pembimbing1Exist) return res.status(400).json({
         status: res.statusCode,
-        message: "Forbidden"
-    });
+        message: 'Mahasiswa Sudah Ada Pembimbing 1 !'
+    })
+
+    const userExist = await Mahasiswa.findOne({
+        where: {
+            id: idmahasiswa,
+            [Op.or]: [
+                { idpembimbing1: iduser },
+                { idpembimbing2: iduser },
+                { idpenguji: iduser }
+              ]
+        }
+    })
+    if (userExist) return res.status(400).json({
+        status: res.statusCode,
+        message: 'Anda sudah menjadi pembimbing/penguji !'
+    })
+
     try {
         const updateMahasiswa = await Mahasiswa.update({
-            idpembimbing1: user[0].id,
+            idpembimbing1: iduser,
         }, {
             where: {
-                id: req.params.id,
+                id: idmahasiswa,
             }
         });
         if (updateMahasiswa == 0) return error
         const searchmahasiswa = await Mahasiswa.findOne({
             where: {
-                id: req.params.id,
+                id: idmahasiswa,
             }
         })
         res.status(200).json({
-            id: req.params.id,
+            id: idmahasiswa,
             status: res.statusCode,
             message: 'Berhasil memperbarui mahasiswa',
             data: searchmahasiswa
         })
     } catch (err) {
         res.status(400).json({
-            id: req.params.id,
+            id: idmahasiswa,
             status: res.statusCode,
             message: 'Gagal memperbarui mahasiswa'
         })
@@ -188,43 +202,57 @@ export const postRolePembimbing1 = async (req, res) => {
 }
 
 export const postRolePembimbing2 = async (req, res) => {
-    const refreshToken = req.cookies.refreshToken;
-    if (!refreshToken) return res.status(401).json({
-        status: res.statusCode,
-        message: "Unauthorized"
-    });
-    const user = await Users.findAll({
+    const { iduser, idmahasiswa } = req.params
+    
+    const pembimbing2Exist = await Mahasiswa.findOne({
         where: {
-            refresh_token: refreshToken
+            idpembimbing2: null,
+            id: idmahasiswa
         }
-    });
-    if (!user[0]) return res.status(403).json({
+    })
+    if (!pembimbing2Exist) return res.status(400).json({
         status: res.statusCode,
-        message: "Forbidden"
-    });
+        message: 'Mahasiswa Sudah Ada Pembimbing 2 !'
+    })
+
+    const userExist = await Mahasiswa.findOne({
+        where: {
+            id: idmahasiswa,
+            [Op.or]: [
+                { idpembimbing1: iduser },
+                { idpembimbing2: iduser },
+                { idpenguji: iduser }
+              ]
+        }
+    })
+    if (userExist) return res.status(400).json({
+        status: res.statusCode,
+        message: 'Anda sudah menjadi pembimbing/penguji !'
+    })
+
     try {
         const updateMahasiswa = await Mahasiswa.update({
-            idpembimbing2: user[0].id,
+            idpembimbing2: iduser,
         }, {
             where: {
-                id: req.params.id,
+                id: idmahasiswa,
             }
         });
         if (updateMahasiswa == 0) return error
         const searchmahasiswa = await Mahasiswa.findOne({
             where: {
-                id: req.params.id,
+                id: idmahasiswa,
             }
         })
         res.status(200).json({
-            id: req.params.id,
+            id: idmahasiswa,
             status: res.statusCode,
             message: 'Berhasil memperbarui mahasiswa',
             data: searchmahasiswa
         })
     } catch (err) {
         res.status(400).json({
-            id: req.params.id,
+            id: idmahasiswa,
             status: res.statusCode,
             message: 'Gagal memperbarui mahasiswa'
         })
@@ -232,43 +260,57 @@ export const postRolePembimbing2 = async (req, res) => {
 }
 
 export const postRolePenguji = async (req, res) => {
-    const refreshToken = req.cookies.refreshToken;
-    if (!refreshToken) return res.status(401).json({
-        status: res.statusCode,
-        message: "Unauthorized"
-    });
-    const user = await Users.findAll({
+    const { iduser, idmahasiswa } = req.params
+    
+    const pengujiExist = await Mahasiswa.findOne({
         where: {
-            refresh_token: refreshToken
+            idpenguji: null,
+            id: idmahasiswa
         }
-    });
-    if (!user[0]) return res.status(403).json({
+    })
+    if (!pengujiExist) return res.status(400).json({
         status: res.statusCode,
-        message: "Forbidden"
-    });
+        message: 'Mahasiswa Sudah Ada Penguji !'
+    })
+
+    const userExist = await Mahasiswa.findOne({
+        where: {
+            id: idmahasiswa,
+            [Op.or]: [
+                { idpembimbing1: iduser },
+                { idpembimbing2: iduser },
+                { idpenguji: iduser }
+              ]
+        }
+    })
+    if (userExist) return res.status(400).json({
+        status: res.statusCode,
+        message: 'Anda sudah menjadi pembimbing/penguji !'
+    })
+
     try {
         const updateMahasiswa = await Mahasiswa.update({
-            idpenguji: user[0].id,
+            idpenguji: iduser,
         }, {
             where: {
-                id: req.params.id,
+                id: idmahasiswa,
             }
         });
         if (updateMahasiswa == 0) return error
         const searchmahasiswa = await Mahasiswa.findOne({
             where: {
-                id: req.params.id,
+                id: idmahasiswa,
             }
         })
         res.status(200).json({
-            id: req.params.id,
+            id: idmahasiswa,
             status: res.statusCode,
             message: 'Berhasil memperbarui mahasiswa',
             data: searchmahasiswa
         })
     } catch (err) {
         res.status(400).json({
-            id: req.params.id,
+            id: idmahasiswa,
             status: res.statusCode,
             message: 'Gagal memperbarui mahasiswa'
         })
