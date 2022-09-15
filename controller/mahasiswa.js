@@ -246,7 +246,6 @@ export const postRolePenguji = async (req, res) => {
         status: res.statusCode,
         message: "Forbidden"
     });
-    console.log(user)
     try {
         const updateMahasiswa = await Mahasiswa.update({
             idpenguji: user[0].id,

@@ -69,6 +69,19 @@ export const postMatkul1 = async (req, res) => {
         idmahasiswa = mahasiswaExist.id
     }
 
+    const nilaiExist = await Matkul1.findOne({
+        where: {
+            iduser: iduser,
+            idmahasiswa: idmahasiswa
+        }
+    })
+    if (nilaiExist) {
+        return res.status(400).json({
+            status: res.statusCode,
+            message: 'Nilai sudah ada !'
+        })
+    }
+
     const Matkul1Post = new Matkul1({
         sub1: sub1,
         valuesub1: valuesub1,
@@ -158,6 +171,19 @@ export const postMatkul2 = async (req, res) => {
         })
     } else {
         idmahasiswa = mahasiswaExist.id
+    }
+
+    const nilaiExist = await Matkul2.findOne({
+        where: {
+            iduser: iduser,
+            idmahasiswa: idmahasiswa
+        }
+    })
+    if (nilaiExist) {
+        return res.status(400).json({
+            status: res.statusCode,
+            message: 'Nilai sudah ada !'
+        })
     }
 
     const Matkul2Post = new Matkul2({
@@ -252,6 +278,19 @@ export const postMatkul3 = async (req, res) => {
         })
     } else {
         idmahasiswa = mahasiswaExist.id
+    }
+
+    const nilaiExist = await Matkul3.findOne({
+        where: {
+            iduser: iduser,
+            idmahasiswa: idmahasiswa
+        }
+    })
+    if (nilaiExist) {
+        return res.status(400).json({
+            status: res.statusCode,
+            message: 'Nilai sudah ada !'
+        })
     }
 
     const Matkul3Post = new Matkul3({
@@ -351,6 +390,19 @@ export const postMatkul4 = async (req, res) => {
         idmahasiswa = mahasiswaExist.id
     }
 
+    const nilaiExist = await Matkul4.findOne({
+        where: {
+            iduser: iduser,
+            idmahasiswa: idmahasiswa
+        }
+    })
+    if (nilaiExist) {
+        return res.status(400).json({
+            status: res.statusCode,
+            message: 'Nilai sudah ada !'
+        })
+    }
+
     const Matkul4Post = new Matkul4({
         sub1: sub1,
         sub11: sub11,
@@ -443,6 +495,19 @@ export const postMatkul5 = async (req, res) => {
         idmahasiswa = mahasiswaExist.id
     }
 
+    const nilaiExist = await Matkul5.findOne({
+        where: {
+            iduser: iduser,
+            idmahasiswa: idmahasiswa
+        }
+    })
+    if (nilaiExist) {
+        return res.status(400).json({
+            status: res.statusCode,
+            message: 'Nilai sudah ada !'
+        })
+    }
+
     const Matkul5Post = new Matkul5({
         sub1: sub1,
         valuesub1: valuesub1,
@@ -526,6 +591,19 @@ export const postMatkul6 = async (req, res) => {
         })
     } else {
         idmahasiswa = mahasiswaExist.id
+    }
+
+    const nilaiExist = await Matkul6.findOne({
+        where: {
+            iduser: iduser,
+            idmahasiswa: idmahasiswa
+        }
+    })
+    if (nilaiExist) {
+        return res.status(400).json({
+            status: res.statusCode,
+            message: 'Nilai sudah ada !'
+        })
     }
 
     const Matkul6Post = new Matkul6({
@@ -647,8 +725,6 @@ export const deleteMatkul = async (req, res) => {
                 id: req.params.idmahasiswa,
             }
         })
-
-        console.log(mahasiswa)
 
         if (mahasiswa[0].idpembimbing1 == req.params.iduser) {
             const updateMahasiswa = await Mahasiswa.update({
