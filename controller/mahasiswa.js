@@ -66,13 +66,43 @@ export const getMahasiswa = async (req, res) => {
 };
 
 export const getMahasiswaById = async (req, res) => {
+    let mahasiswa = []
     try {
-        const mahasiswa = await Mahasiswa.findOne({
+        const searchmahasiswa = await Mahasiswa.findAll({
             where: {
                 id: req.params.id,
             }
         })
-        if (mahasiswa === null) return error
+        if (searchmahasiswa === null) return error
+
+        const pembimbing1 = await Users.findAll({
+            where: {
+                id: searchmahasiswa[0].idpembimbing1,
+            },
+            attributes: ['id', 'name', 'email']
+        })
+
+        const pembimbing2 = await Users.findAll({
+            where: {
+                id: searchmahasiswa[0].idpembimbing2,
+            },
+            attributes: ['id', 'name', 'email']
+        })
+
+        const penguji = await Users.findAll({
+            where: {
+                id: searchmahasiswa[0].idpenguji,
+            },
+            attributes: ['id', 'name', 'email']
+        })
+
+        mahasiswa.push({
+            mahasiswa: searchmahasiswa,
+            pembimbing1: pembimbing1,
+            pembimbing2: pembimbing2,
+            penguji: penguji
+        })
+
         res.status(200).json({
             id: req.params.id,
             status: res.statusCode,
