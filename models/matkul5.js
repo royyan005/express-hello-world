@@ -1,6 +1,6 @@
 import db from "../config/database.js";
 
-const Matkul5 = db.define('matkul5',{
+const Matkul5 = db.define('matkul5s',{
     id: {
         type: Int16Array,
         primaryKey: true,
