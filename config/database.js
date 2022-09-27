@@ -11,5 +11,4 @@ const db = new Sequelize('sql6522339','sql6522339','PPpRUdEEf5',{
     //   },
     logQueryParameters: true
 })
-
 export default db;

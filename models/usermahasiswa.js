@@ -1,21 +1,15 @@
 import db from "../config/database.js";
 
-const Users = db.define('users',{
-    id: {
+const UserMahasiswa = db.define('usermahasiswa', {
+    usermahasiswaid: {
         type: Int16Array,
         primaryKey: true,
     },
-    name: {
-        type: String,
+    mahasiswaid: {
+        type: Int16Array,
     },
-    email: {
-        type: String,
-    },
-    password: {
-        type: String,
-    },
-    refresh_token: {
-        type: String,
+    userid: {
+        type: Int16Array,
     },
     createdAt: {
         type: String,
@@ -24,7 +18,7 @@ const Users = db.define('users',{
     updatedAt: {
         type: Date,
         default: Date.now(),
-    }
-})
+    },
+});
 
-export default Users;
+export default UserMahasiswa

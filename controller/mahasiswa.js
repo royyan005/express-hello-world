@@ -1,5 +1,7 @@
+import {MahasiswaAssociate} from "../models/association.js";
 import Mahasiswa from "../models/mahasiswa.js";
 import Users from "../models/user.js";
+import UserMahasiswa from "../models/usermahasiswa.js";
 import {
     Op
 } from "sequelize"
@@ -66,43 +68,12 @@ export const getMahasiswa = async (req, res) => {
 };
 
 export const getMahasiswaById = async (req, res) => {
-    let mahasiswa = []
     try {
-        const searchmahasiswa = await Mahasiswa.findAll({
+        const mahasiswa = await Mahasiswa.findAll({
             where: {
                 id: req.params.id,
             }
         })
-        if (searchmahasiswa === null) return error
-
-        const pembimbing1 = await Users.findAll({
-            where: {
-                id: searchmahasiswa[0].idpembimbing1,
-            },
-            attributes: ['id', 'name', 'email']
-        })
-
-        const pembimbing2 = await Users.findAll({
-            where: {
-                id: searchmahasiswa[0].idpembimbing2,
-            },
-            attributes: ['id', 'name', 'email']
-        })
-
-        const penguji = await Users.findAll({
-            where: {
-                id: searchmahasiswa[0].idpenguji,
-            },
-            attributes: ['id', 'name', 'email']
-        })
-
-        mahasiswa.push({
-            mahasiswa: searchmahasiswa,
-            pembimbing1: pembimbing1,
-            pembimbing2: pembimbing2,
-            penguji: penguji
-        })
-
         res.status(200).json({
             id: req.params.id,
             status: res.statusCode,
@@ -202,7 +173,13 @@ export const postRolePembimbing1 = async (req, res) => {
         message: 'Anda sudah menjadi pembimbing/penguji !'
     })
 
+    const AssociationPost = new UserMahasiswa({
+        mahasiswaid: idmahasiswa,
+        userid: iduser,
+    });
+
     try {
+        const association = await AssociationPost.save();
         const updateMahasiswa = await Mahasiswa.update({
             idpembimbing1: iduser,
         }, {
@@ -259,8 +236,13 @@ export const postRolePembimbing2 = async (req, res) => {
         status: res.statusCode,
         message: 'Anda sudah menjadi pembimbing/penguji !'
     })
+    const AssociationPost = new UserMahasiswa({
+        mahasiswaid: idmahasiswa,
+        userid: iduser,
+    });
 
     try {
+        const association = await AssociationPost.save();
         const updateMahasiswa = await Mahasiswa.update({
             idpembimbing2: iduser,
         }, {
@@ -318,7 +300,13 @@ export const postRolePenguji = async (req, res) => {
         message: 'Anda sudah menjadi pembimbing/penguji !'
     })
 
+    const AssociationPost = new UserMahasiswa({
+        mahasiswaid: idmahasiswa,
+        userid: iduser,
+    });
+
     try {
+        const association = await AssociationPost.save();
         const updateMahasiswa = await Mahasiswa.update({
             idpenguji: iduser,
         }, {
@@ -384,7 +372,11 @@ export const getMahasiswaPagination = async (req, res) => {
     try {
         const mahasiswa = await Mahasiswa.findAndCountAll({
                 limit: limit,
-                offset: offset
+                offset: offset,
+                include: {
+                    model: Users,
+                    attributes: ['id', 'name', 'email']
+                  }
             })
             .then(data => {
                 const response = getPagingData(data, page, limit)
