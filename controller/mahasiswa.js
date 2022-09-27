@@ -422,7 +422,11 @@ export const searchMahasiswaPagination = async (req, res) => {
                             [Op.like]: `%${search}%`
                         }
                     }]
-                }
+                },
+                include: {
+                    model: Users,
+                    attributes: ['id', 'name', 'email']
+                  }
             })
             .then(data => {
                 const response = getPagingData(data, page, limit)
