@@ -1,6 +1,6 @@
 import db from "../config/database.js";
 
-const UserMahasiswa = db.define('usermahasiswa', {
+const UserMahasiswa = db.define('usermahasiswas', {
     usermahasiswaid: {
         type: Int16Array,
         primaryKey: true,
