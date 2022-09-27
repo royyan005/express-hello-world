@@ -6,6 +6,7 @@ import Matkul5 from "../models/matkul5.js";
 import Matkul6 from "../models/matkul6.js";
 import User from "../models/user.js";
 import Mahasiswa from "../models/mahasiswa.js";
+import UserMahasiswa from "../models/usermahasiswa.js";
 
 export const postMatkul1 = async (req, res) => {
     const {
@@ -792,6 +793,13 @@ export const deleteMatkul = async (req, res) => {
                 idmahasiswa: req.params.idmahasiswa
             }
         });
+
+        const deleteusermahasiswa = await UserMahasiswa.destroy({
+            where: {
+                userid: req.params.iduser,
+                mahasiswaid: req.params.idmahasiswa
+            }
+        })
 
         res.status(200).json({
             status: res.statusCode,

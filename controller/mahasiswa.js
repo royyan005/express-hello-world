@@ -376,7 +376,8 @@ export const getMahasiswaPagination = async (req, res) => {
                 include: {
                     model: Users,
                     attributes: ['id', 'name', 'email']
-                  }
+                  },
+                distinct: true,
             })
             .then(data => {
                 const response = getPagingData(data, page, limit)
