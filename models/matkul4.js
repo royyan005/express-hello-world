@@ -55,6 +55,16 @@ const Matkul4 = db.define('matkul4s',{
     valuesub14: {
         type: Int16Array,
     },
+    sks: {
+        type: Int16Array,
+        default: 12,
+    },
+    angkamutu: {
+        type: Float32Array,
+    },
+    nilaimutu: {
+        type: Int16Array,
+    },
 });
 
 export default Matkul4

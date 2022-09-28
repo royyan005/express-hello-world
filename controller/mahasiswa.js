@@ -1,10 +1,18 @@
-import {MahasiswaAssociate} from "../models/association.js";
+import {
+    MahasiswaAssociate
+} from "../models/association.js";
 import Mahasiswa from "../models/mahasiswa.js";
 import Users from "../models/user.js";
 import UserMahasiswa from "../models/usermahasiswa.js";
 import {
     Op
 } from "sequelize"
+import Matkul1 from "../models/matkul1.js";
+import Matkul2 from "../models/matkul2.js";
+import Matkul3 from "../models/matkul3.js";
+import Matkul4 from "../models/matkul4.js";
+import Matkul5 from "../models/matkul5.js";
+import Matkul6 from "../models/matkul6.js";
 
 export const postMahasiswa = async (req, res) => {
     const {
@@ -145,8 +153,11 @@ export const deleteMahasiswa = async (req, res) => {
 }
 
 export const postRolePembimbing1 = async (req, res) => {
-    const { iduser, idmahasiswa } = req.params
-    
+    const {
+        iduser,
+        idmahasiswa
+    } = req.params
+
     const pembimbing1Exist = await Mahasiswa.findOne({
         where: {
             idpembimbing1: null,
@@ -161,11 +172,16 @@ export const postRolePembimbing1 = async (req, res) => {
     const userExist = await Mahasiswa.findOne({
         where: {
             id: idmahasiswa,
-            [Op.or]: [
-                { idpembimbing1: iduser },
-                { idpembimbing2: iduser },
-                { idpenguji: iduser }
-              ]
+            [Op.or]: [{
+                    idpembimbing1: iduser
+                },
+                {
+                    idpembimbing2: iduser
+                },
+                {
+                    idpenguji: iduser
+                }
+            ]
         }
     })
     if (userExist) return res.status(400).json({
@@ -209,8 +225,11 @@ export const postRolePembimbing1 = async (req, res) => {
 }
 
 export const postRolePembimbing2 = async (req, res) => {
-    const { iduser, idmahasiswa } = req.params
-    
+    const {
+        iduser,
+        idmahasiswa
+    } = req.params
+
     const pembimbing2Exist = await Mahasiswa.findOne({
         where: {
             idpembimbing2: null,
@@ -225,11 +244,16 @@ export const postRolePembimbing2 = async (req, res) => {
     const userExist = await Mahasiswa.findOne({
         where: {
             id: idmahasiswa,
-            [Op.or]: [
-                { idpembimbing1: iduser },
-                { idpembimbing2: iduser },
-                { idpenguji: iduser }
-              ]
+            [Op.or]: [{
+                    idpembimbing1: iduser
+                },
+                {
+                    idpembimbing2: iduser
+                },
+                {
+                    idpenguji: iduser
+                }
+            ]
         }
     })
     if (userExist) return res.status(400).json({
@@ -272,8 +296,11 @@ export const postRolePembimbing2 = async (req, res) => {
 }
 
 export const postRolePenguji = async (req, res) => {
-    const { iduser, idmahasiswa } = req.params
-    
+    const {
+        iduser,
+        idmahasiswa
+    } = req.params
+
     const pengujiExist = await Mahasiswa.findOne({
         where: {
             idpenguji: null,
@@ -288,11 +315,16 @@ export const postRolePenguji = async (req, res) => {
     const userExist = await Mahasiswa.findOne({
         where: {
             id: idmahasiswa,
-            [Op.or]: [
-                { idpembimbing1: iduser },
-                { idpembimbing2: iduser },
-                { idpenguji: iduser }
-              ]
+            [Op.or]: [{
+                    idpembimbing1: iduser
+                },
+                {
+                    idpembimbing2: iduser
+                },
+                {
+                    idpenguji: iduser
+                }
+            ]
         }
     })
     if (userExist) return res.status(400).json({
@@ -376,7 +408,7 @@ export const getMahasiswaPagination = async (req, res) => {
                 include: {
                     model: Users,
                     attributes: ['id', 'name', 'email']
-                  },
+                },
                 distinct: true,
             })
             .then(data => {
@@ -414,20 +446,21 @@ export const searchMahasiswaPagination = async (req, res) => {
                 offset: offset,
                 where: {
                     [Op.or]: [{
-                        npm: {
-                            [Op.like]: `%${search}%`
+                            npm: {
+                                [Op.like]: `%${search}%`
+                            }
+                        },
+                        {
+                            nama: {
+                                [Op.like]: `%${search}%`
+                            }
                         }
-                    },
-                    {
-                        nama: {
-                            [Op.like]: `%${search}%`
-                        }
-                    }]
+                    ]
                 },
                 include: {
                     model: Users,
                     attributes: ['id', 'name', 'email']
-                  }
+                }
             })
             .then(data => {
                 const response = getPagingData(data, page, limit)
@@ -445,4 +478,244 @@ export const searchMahasiswaPagination = async (req, res) => {
             message: 'Gagal mendapatkan mahasiswa'
         })
     };
+}
+
+export const updateIpkMahasiswa = async (req, res) => {
+    const idpembimbing1 = req.params.idpembimbing1
+    const pembimbing1 = await Users.findOne({
+        where: {
+            id: idpembimbing1
+        }
+    })
+    if (!pembimbing1) return res.status(400).json({
+        status: res.statusCode,
+        message: 'Pembimbing1 tidak ada !'
+    })
+
+    const idpembimbing2 = req.params.idpembimbing2
+    const pembimbing2 = await Users.findOne({
+        where: {
+            id: idpembimbing1
+        }
+    })
+    if (!pembimbing2) return res.status(400).json({
+        status: res.statusCode,
+        message: 'Pembimbing1 tidak ada !'
+    })
+
+    const idpenguji = req.params.idpenguji
+    const penguji = await Users.findOne({
+        where: {
+            id: idpenguji
+        }
+    })
+    if (!penguji) return res.status(400).json({
+        status: res.statusCode,
+        message: 'Pembimbing1 tidak ada !'
+    })
+
+    var idmahasiswa = req.params.idmahasiswa
+    const mahasiswaExist = await Mahasiswa.findOne({
+        where: {
+            id: idmahasiswa
+        }
+    })
+    if (!mahasiswaExist) {
+        return res.status(400).json({
+            status: res.statusCode,
+            message: 'Mahasiswa tidak ada !'
+        })
+    } else {
+        idmahasiswa = mahasiswaExist.id
+    }
+
+    var ipk = 0.0
+
+    try {
+        const matkul1pembimbing1 = await Matkul1.findAll({
+            where: {
+                iduser: idpembimbing1,
+                idmahasiswa: idmahasiswa
+            }
+        })
+        if (!matkul1pembimbing1) return err
+
+        const matkul2pembimbing1 = await Matkul2.findAll({
+            where: {
+                iduser: idpembimbing1,
+                idmahasiswa: idmahasiswa
+            }
+        })
+        if (!matkul2pembimbing1) return err
+
+        const matkul3pembimbing1 = await Matkul3.findAll({
+            where: {
+                iduser: idpembimbing1,
+                idmahasiswa: idmahasiswa
+            }
+        })
+        if (!matkul3pembimbing1) return err
+
+        const matkul4pembimbing1 = await Matkul4.findAll({
+            where: {
+                iduser: idpembimbing1,
+                idmahasiswa: idmahasiswa
+            }
+        })
+        if (!matkul4pembimbing1) return err
+
+        const matkul5pembimbing1 = await Matkul5.findAll({
+            where: {
+                iduser: idpembimbing1,
+                idmahasiswa: idmahasiswa
+            }
+        })
+        if (!matkul5pembimbing1) return err
+
+        const matkul6pembimbing1 = await Matkul6.findAll({
+            where: {
+                iduser: idpembimbing1,
+                idmahasiswa: idmahasiswa
+            }
+        })
+        if (!matkul6pembimbing1) return err
+
+        const matkul1pembimbing2 = await Matkul1.findAll({
+            where: {
+                iduser: idpembimbing2,
+                idmahasiswa: idmahasiswa
+            }
+        })
+        if (!matkul1pembimbing2) return err
+
+        const matkul2pembimbing2 = await Matkul2.findAll({
+            where: {
+                iduser: idpembimbing2,
+                idmahasiswa: idmahasiswa
+            }
+        })
+        if (!matkul2pembimbing2) return err
+
+        const matkul3pembimbing2 = await Matkul3.findAll({
+            where: {
+                iduser: idpembimbing2,
+                idmahasiswa: idmahasiswa
+            }
+        })
+        if (!matkul3pembimbing2) return err
+
+        const matkul4pembimbing2 = await Matkul4.findAll({
+            where: {
+                iduser: idpembimbing2,
+                idmahasiswa: idmahasiswa
+            }
+        })
+        if (!matkul4pembimbing2) return err
+
+        const matkul5pembimbing2 = await Matkul5.findAll({
+            where: {
+                iduser: idpembimbing2,
+                idmahasiswa: idmahasiswa
+            }
+        })
+        if (!matkul5pembimbing2) return err
+
+        const matkul6pembimbing2 = await Matkul6.findAll({
+            where: {
+                iduser: idpembimbing2,
+                idmahasiswa: idmahasiswa
+            }
+        })
+        if (!matkul6pembimbing2) return err
+
+        const matkul1penguji = await Matkul1.findAll({
+            where: {
+                iduser: idpenguji,
+                idmahasiswa: idmahasiswa
+            }
+        })
+        if (!matkul1penguji) return err
+
+        const matkul2penguji = await Matkul2.findAll({
+            where: {
+                iduser: idpenguji,
+                idmahasiswa: idmahasiswa
+            }
+        })
+        if (!matkul2penguji) return err
+
+        const matkul3penguji = await Matkul3.findAll({
+            where: {
+                iduser: idpenguji,
+                idmahasiswa: idmahasiswa
+            }
+        })
+        if (!matkul3penguji) return err
+
+        const matkul4penguji = await Matkul4.findAll({
+            where: {
+                iduser: idpenguji,
+                idmahasiswa: idmahasiswa
+            }
+        })
+        if (!matkul4penguji) return err
+
+        const matkul5penguji = await Matkul5.findAll({
+            where: {
+                iduser: idpenguji,
+                idmahasiswa: idmahasiswa
+            }
+        })
+        if (!matkul5penguji) return err
+
+        const matkul6penguji = await Matkul6.findAll({
+            where: {
+                iduser: idpenguji,
+                idmahasiswa: idmahasiswa
+            }
+        })
+        if (!matkul6penguji) return err
+
+        const totalskspembimbing1 = matkul1pembimbing1[0].sks + matkul2pembimbing1[0].sks + matkul3pembimbing1[0].sks + matkul4pembimbing1[0].sks + matkul5pembimbing1[0].sks + matkul6pembimbing1[0].sks
+        const totalnilaimutupembimbing1 = matkul1pembimbing1[0].nilaimutu + matkul2pembimbing1[0].nilaimutu + matkul3pembimbing1[0].nilaimutu + matkul4pembimbing1[0].nilaimutu + matkul5pembimbing1[0].nilaimutu + matkul6pembimbing1[0].nilaimutu
+        const totalskspembimbing2 = matkul1pembimbing2[0].sks + matkul2pembimbing2[0].sks + matkul3pembimbing2[0].sks + matkul4pembimbing2[0].sks + matkul5pembimbing2[0].sks + matkul6pembimbing2[0].sks
+        const totalnilaimutupembimbing2 = matkul1pembimbing2[0].nilaimutu + matkul2pembimbing2[0].nilaimutu + matkul3pembimbing2[0].nilaimutu + matkul4pembimbing2[0].nilaimutu + matkul5pembimbing2[0].nilaimutu + matkul6pembimbing2[0].nilaimutu
+        const totalskspenguji = matkul1penguji[0].sks + matkul2penguji[0].sks + matkul3penguji[0].sks + matkul4penguji[0].sks + matkul5penguji[0].sks + matkul6penguji[0].sks
+        const totalnilaimutupenguji = matkul1penguji[0].nilaimutu + matkul2penguji[0].nilaimutu + matkul3penguji[0].nilaimutu + matkul4penguji[0].nilaimutu + matkul5penguji[0].nilaimutu + matkul6penguji[0].nilaimutu
+        ipk = (0.4 * (totalnilaimutupembimbing1/totalskspembimbing1)) + (0.4 * (totalnilaimutupembimbing2/totalskspembimbing2)) + (0.3 * (totalnilaimutupenguji/totalskspenguji))
+    } catch (err) {
+        return res.status(400).json({
+            status: res.statusCode,
+            message: 'Nilai Mahasiswa belum lengkap !'
+        })
+    }
+
+
+    try {
+        const updateMahasiswa = await Mahasiswa.update({
+            ipk: ipk
+        }, {
+            where: {
+                id: idmahasiswa
+            }
+        });
+        if (updateMahasiswa == 0) return error
+        const searchmahasiswa = await Mahasiswa.findOne({
+            where: {
+                id: idmahasiswa,
+            }
+        })
+        res.status(200).json({
+            id: req.params.id,
+            status: res.statusCode,
+            message: 'Berhasil memperbarui mahasiswa',
+            data: searchmahasiswa
+        })
+    } catch (err) {
+        res.status(400).json({
+            id: req.params.id,
+            status: res.statusCode,
+            message: 'Gagal memperbarui mahasiswa'
+        })
+    }
 }

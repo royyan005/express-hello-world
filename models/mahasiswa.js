@@ -31,6 +31,9 @@ const Mahasiswa = db.define('mahasiswas',{
     idpenguji: {
         type: Int16Array,
     },
+    ipk: {
+        type: Float32Array,
+    }
 });
 
 export default Mahasiswa
