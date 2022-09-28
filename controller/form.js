@@ -7,7 +7,10 @@ import Matkul6 from "../models/matkul6.js";
 import User from "../models/user.js";
 import Mahasiswa from "../models/mahasiswa.js";
 import UserMahasiswa from "../models/usermahasiswa.js";
-import { HurufMutu, AngkaMutu } from "../controller/helper.js";
+import {
+    HurufMutu,
+    AngkaMutu
+} from "../controller/helper.js";
 
 export const postMatkul1 = async (req, res) => {
     const {
@@ -38,18 +41,18 @@ export const postMatkul1 = async (req, res) => {
     hurufmutu = HurufMutu(average)
     if (hurufmutu == '') {
         return res.status(400).json({
-                    status: res.statusCode,
-                    message: 'Nilai Tidak Valid'
-                })
+            status: res.statusCode,
+            message: 'Nilai Tidak Valid'
+        })
     }
 
     var angkamutu = 0
     angkamutu = AngkaMutu(hurufmutu)
     if (angkamutu == '') {
         return res.status(400).json({
-                    status: res.statusCode,
-                    message: 'Nilai Tidak Valid'
-                })
+            status: res.statusCode,
+            message: 'Nilai Tidak Valid'
+        })
     }
 
     const nilaimutu = angkamutu * sks
@@ -143,18 +146,18 @@ export const postMatkul2 = async (req, res) => {
     hurufmutu = HurufMutu(average)
     if (hurufmutu == '') {
         return res.status(400).json({
-                    status: res.statusCode,
-                    message: 'Nilai Tidak Valid'
-                })
+            status: res.statusCode,
+            message: 'Nilai Tidak Valid'
+        })
     }
 
     var angkamutu = 0
     angkamutu = AngkaMutu(hurufmutu)
     if (angkamutu == '') {
         return res.status(400).json({
-                    status: res.statusCode,
-                    message: 'Nilai Tidak Valid'
-                })
+            status: res.statusCode,
+            message: 'Nilai Tidak Valid'
+        })
     }
 
     const nilaimutu = angkamutu * sks
@@ -251,18 +254,18 @@ export const postMatkul3 = async (req, res) => {
     hurufmutu = HurufMutu(average)
     if (hurufmutu == '') {
         return res.status(400).json({
-                    status: res.statusCode,
-                    message: 'Nilai Tidak Valid'
-                })
+            status: res.statusCode,
+            message: 'Nilai Tidak Valid'
+        })
     }
 
     var angkamutu = 0
     angkamutu = AngkaMutu(hurufmutu)
     if (angkamutu == '') {
         return res.status(400).json({
-                    status: res.statusCode,
-                    message: 'Nilai Tidak Valid'
-                })
+            status: res.statusCode,
+            message: 'Nilai Tidak Valid'
+        })
     }
 
     const nilaimutu = angkamutu * sks
@@ -362,18 +365,18 @@ export const postMatkul4 = async (req, res) => {
     hurufmutu = HurufMutu(average)
     if (hurufmutu == '') {
         return res.status(400).json({
-                    status: res.statusCode,
-                    message: 'Nilai Tidak Valid'
-                })
+            status: res.statusCode,
+            message: 'Nilai Tidak Valid'
+        })
     }
 
     var angkamutu = 0
     angkamutu = AngkaMutu(hurufmutu)
     if (angkamutu == '') {
         return res.status(400).json({
-                    status: res.statusCode,
-                    message: 'Nilai Tidak Valid'
-                })
+            status: res.statusCode,
+            message: 'Nilai Tidak Valid'
+        })
     }
 
     const nilaimutu = angkamutu * sks
@@ -468,18 +471,18 @@ export const postMatkul5 = async (req, res) => {
     hurufmutu = HurufMutu(average)
     if (hurufmutu == '') {
         return res.status(400).json({
-                    status: res.statusCode,
-                    message: 'Nilai Tidak Valid'
-                })
+            status: res.statusCode,
+            message: 'Nilai Tidak Valid'
+        })
     }
 
     var angkamutu = 0
     angkamutu = AngkaMutu(hurufmutu)
     if (angkamutu == '') {
         return res.status(400).json({
-                    status: res.statusCode,
-                    message: 'Nilai Tidak Valid'
-                })
+            status: res.statusCode,
+            message: 'Nilai Tidak Valid'
+        })
     }
 
     const nilaimutu = angkamutu * sks
@@ -567,18 +570,18 @@ export const postMatkul6 = async (req, res) => {
     hurufmutu = HurufMutu(average)
     if (hurufmutu == '') {
         return res.status(400).json({
-                    status: res.statusCode,
-                    message: 'Nilai Tidak Valid'
-                })
+            status: res.statusCode,
+            message: 'Nilai Tidak Valid'
+        })
     }
 
     var angkamutu = 0
     angkamutu = AngkaMutu(hurufmutu)
     if (angkamutu == '') {
         return res.status(400).json({
-                    status: res.statusCode,
-                    message: 'Nilai Tidak Valid'
-                })
+            status: res.statusCode,
+            message: 'Nilai Tidak Valid'
+        })
     }
 
     const nilaimutu = angkamutu * sks
@@ -805,6 +808,14 @@ export const deleteMatkul = async (req, res) => {
             where: {
                 userid: req.params.iduser,
                 mahasiswaid: req.params.idmahasiswa
+            }
+        })
+
+        const deleteipk = await Mahasiswa.update({
+            ipk: null
+        }, {
+            where: {
+                id: req.params.idmahasiswa
             }
         })
 
