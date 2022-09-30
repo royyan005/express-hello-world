@@ -812,7 +812,13 @@ export const deleteMatkul = async (req, res) => {
         })
 
         const deleteipk = await Mahasiswa.update({
-            ipk: null
+            ipk: null,
+            am1: null,
+            am2: null,
+            am3: null,
+            am4: null,
+            am5: null,
+            am6: null,
         }, {
             where: {
                 id: req.params.idmahasiswa

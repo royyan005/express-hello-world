@@ -33,6 +33,24 @@ const Mahasiswa = db.define('mahasiswas',{
     },
     ipk: {
         type: Float32Array,
+    },
+    am1: {
+        type: Float32Array,
+    },
+    am2: {
+        type: Float32Array,
+    },
+    am3: {
+        type: Float32Array,
+    },
+    am4: {
+        type: Float32Array,
+    },
+    am5: {
+        type: Float32Array,
+    },
+    am6: {
+        type: Float32Array,
     }
 });
 
