@@ -702,7 +702,7 @@ export const updateIpkMahasiswa = async (req, res) => {
         const totalnilaimutupembimbing2 = matkul1pembimbing2[0].nilaimutu + matkul2pembimbing2[0].nilaimutu + matkul3pembimbing2[0].nilaimutu + matkul4pembimbing2[0].nilaimutu + matkul5pembimbing2[0].nilaimutu + matkul6pembimbing2[0].nilaimutu
         const totalskspenguji = matkul1penguji[0].sks + matkul2penguji[0].sks + matkul3penguji[0].sks + matkul4penguji[0].sks + matkul5penguji[0].sks + matkul6penguji[0].sks
         const totalnilaimutupenguji = matkul1penguji[0].nilaimutu + matkul2penguji[0].nilaimutu + matkul3penguji[0].nilaimutu + matkul4penguji[0].nilaimutu + matkul5penguji[0].nilaimutu + matkul6penguji[0].nilaimutu
-        ipk = (0.4 * (totalnilaimutupembimbing1/totalskspembimbing1)) + (0.4 * (totalnilaimutupembimbing2/totalskspembimbing2)) + (0.3 * (totalnilaimutupenguji/totalskspenguji))
+        ipk = (((30/100) * (totalnilaimutupembimbing1/totalskspembimbing1)) + ((40/100) * (totalnilaimutupembimbing2/totalskspembimbing2)) + ((30/100) * (totalnilaimutupenguji/totalskspenguji)))
     } catch (err) {
         return res.status(400).json({
             status: res.statusCode,
