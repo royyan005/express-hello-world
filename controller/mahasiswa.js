@@ -683,18 +683,18 @@ export const updateIpkMahasiswa = async (req, res) => {
         })
         if (!matkul6penguji) return err
 
-        const totalam1 = ((0.4 * matkul1pembimbing1[0].angkamutu) + (0.4 * matkul1pembimbing2[0].angkamutu) + (0.3 * matkul1penguji[0].angkamutu))
-        const totalam2 = ((0.4 * matkul2pembimbing1[0].angkamutu) + (0.4 * matkul2pembimbing2[0].angkamutu) + (0.3 * matkul2penguji[0].angkamutu))
-        const totalam3 = ((0.4 * matkul3pembimbing1[0].angkamutu) + (0.4 * matkul3pembimbing2[0].angkamutu) + (0.3 * matkul3penguji[0].angkamutu))
-        const totalam4 = ((0.4 * matkul4pembimbing1[0].angkamutu) + (0.4 * matkul4pembimbing2[0].angkamutu) + (0.3 * matkul4penguji[0].angkamutu))
-        const totalam5 = ((0.4 * matkul5pembimbing1[0].angkamutu) + (0.4 * matkul5pembimbing2[0].angkamutu) + (0.3 * matkul5penguji[0].angkamutu))
-        const totalam6 = ((0.4 * matkul6pembimbing1[0].angkamutu) + (0.4 * matkul6pembimbing2[0].angkamutu) + (0.3 * matkul6penguji[0].angkamutu))
-        am1 = totalam1/3
-        am2 = totalam2/3
-        am3 = totalam3/3
-        am4 = totalam4/3
-        am5 = totalam5/3
-        am6 = totalam6/3
+        const totalam1 = (((40/100) * matkul1pembimbing1[0].angkamutu) + ((40/100) * matkul1pembimbing2[0].angkamutu) + (0.3 * matkul1penguji[0].angkamutu))
+        const totalam2 = (((40/100) * matkul2pembimbing1[0].angkamutu) + ((40/100) * matkul2pembimbing2[0].angkamutu) + (0.3 * matkul2penguji[0].angkamutu))
+        const totalam3 = (((40/100) * matkul3pembimbing1[0].angkamutu) + ((40/100) * matkul3pembimbing2[0].angkamutu) + (0.3 * matkul3penguji[0].angkamutu))
+        const totalam4 = (((40/100) * matkul4pembimbing1[0].angkamutu) + ((40/100) * matkul4pembimbing2[0].angkamutu) + (0.3 * matkul4penguji[0].angkamutu))
+        const totalam5 = (((40/100) * matkul5pembimbing1[0].angkamutu) + ((40/100) * matkul5pembimbing2[0].angkamutu) + (0.3 * matkul5penguji[0].angkamutu))
+        const totalam6 = (((40/100) * matkul6pembimbing1[0].angkamutu) + ((40/100) * matkul6pembimbing2[0].angkamutu) + (0.3 * matkul6penguji[0].angkamutu))
+        am1 = totalam1
+        am2 = totalam2
+        am3 = totalam3
+        am4 = totalam4
+        am5 = totalam5
+        am6 = totalam6
 
         const totalskspembimbing1 = matkul1pembimbing1[0].sks + matkul2pembimbing1[0].sks + matkul3pembimbing1[0].sks + matkul4pembimbing1[0].sks + matkul5pembimbing1[0].sks + matkul6pembimbing1[0].sks
         const totalnilaimutupembimbing1 = matkul1pembimbing1[0].nilaimutu + matkul2pembimbing1[0].nilaimutu + matkul3pembimbing1[0].nilaimutu + matkul4pembimbing1[0].nilaimutu + matkul5pembimbing1[0].nilaimutu + matkul6pembimbing1[0].nilaimutu
@@ -702,7 +702,7 @@ export const updateIpkMahasiswa = async (req, res) => {
         const totalnilaimutupembimbing2 = matkul1pembimbing2[0].nilaimutu + matkul2pembimbing2[0].nilaimutu + matkul3pembimbing2[0].nilaimutu + matkul4pembimbing2[0].nilaimutu + matkul5pembimbing2[0].nilaimutu + matkul6pembimbing2[0].nilaimutu
         const totalskspenguji = matkul1penguji[0].sks + matkul2penguji[0].sks + matkul3penguji[0].sks + matkul4penguji[0].sks + matkul5penguji[0].sks + matkul6penguji[0].sks
         const totalnilaimutupenguji = matkul1penguji[0].nilaimutu + matkul2penguji[0].nilaimutu + matkul3penguji[0].nilaimutu + matkul4penguji[0].nilaimutu + matkul5penguji[0].nilaimutu + matkul6penguji[0].nilaimutu
-        ipk = (((30/100) * (totalnilaimutupembimbing1/totalskspembimbing1)) + ((40/100) * (totalnilaimutupembimbing2/totalskspembimbing2)) + ((30/100) * (totalnilaimutupenguji/totalskspenguji)))
+        ipk = (((40/100) * (totalnilaimutupembimbing1/totalskspembimbing1)) + ((40/100) * (totalnilaimutupembimbing2/totalskspembimbing2)) + ((30/100) * (totalnilaimutupenguji/totalskspenguji)))
     } catch (err) {
         return res.status(400).json({
             status: res.statusCode,
