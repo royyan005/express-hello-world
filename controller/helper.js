@@ -41,3 +41,24 @@ export function AngkaMutu(hurufmutu) {
         return angkamutu = ''
     }
 }
+
+export function AngkaMutuAverage(angkamutu) {
+    var angkamutufinal = 0
+    if (angkamutu <= 4 && angkamutu >= 3.5) {
+        return angkamutufinal = 'A'
+    } else if (angkamutu <= 3.49 && angkamutu >= 3) {
+        return angkamutufinal = 'B+'
+    } else if (angkamutu <= 2.99 && angkamutu >= 2.5) {
+        return angkamutufinal = 'B'
+    } else if (angkamutu <= 2.49 && angkamutu >= 2) {
+        return angkamutufinal = 'C+'
+    } else if (angkamutu <= 1.99 && angkamutu >= 1.5) {
+        return angkamutufinal = 'C'
+    } else if (angkamutu <= 1.49 && angkamutu >= 1) {
+        return angkamutufinal = 'D'
+    } else if (angkamutu <= 0.99 && angkamutu >= 0) {
+        return angkamutufinal = 'E'
+    } else {
+        return angkamutufinal
+    }
+}
