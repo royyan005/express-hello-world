@@ -13,6 +13,10 @@ import Matkul3 from "../models/matkul3.js";
 import Matkul4 from "../models/matkul4.js";
 import Matkul5 from "../models/matkul5.js";
 import Matkul6 from "../models/matkul6.js";
+import {
+    HurufMutu,
+    AngkaMutu
+} from "../controller/helper.js";
 
 export const postMahasiswa = async (req, res) => {
     const {
@@ -683,12 +687,26 @@ export const updateIpkMahasiswa = async (req, res) => {
         })
         if (!matkul6penguji) return err
 
-        const totalam1 = (((40/100) * matkul1pembimbing1[0].angkamutu) + ((40/100) * matkul1pembimbing2[0].angkamutu) + (0.3 * matkul1penguji[0].angkamutu))
-        const totalam2 = (((40/100) * matkul2pembimbing1[0].angkamutu) + ((40/100) * matkul2pembimbing2[0].angkamutu) + (0.3 * matkul2penguji[0].angkamutu))
-        const totalam3 = (((40/100) * matkul3pembimbing1[0].angkamutu) + ((40/100) * matkul3pembimbing2[0].angkamutu) + (0.3 * matkul3penguji[0].angkamutu))
-        const totalam4 = (((40/100) * matkul4pembimbing1[0].angkamutu) + ((40/100) * matkul4pembimbing2[0].angkamutu) + (0.3 * matkul4penguji[0].angkamutu))
-        const totalam5 = (((40/100) * matkul5pembimbing1[0].angkamutu) + ((40/100) * matkul5pembimbing2[0].angkamutu) + (0.3 * matkul5penguji[0].angkamutu))
-        const totalam6 = (((40/100) * matkul6pembimbing1[0].angkamutu) + ((40/100) * matkul6pembimbing2[0].angkamutu) + (0.3 * matkul6penguji[0].angkamutu))
+        const avgnilaimatkul1 = (((40/100) * matkul1pembimbing1[0].average) + ((40/100) * matkul1pembimbing2[0].average) + (0.3 * matkul1penguji[0].average))
+        const avgnilaimatkul2 = (((40/100) * matkul2pembimbing1[0].average) + ((40/100) * matkul2pembimbing2[0].average) + (0.3 * matkul2penguji[0].average))
+        const avgnilaimatkul3 = (((40/100) * matkul3pembimbing1[0].average) + ((40/100) * matkul3pembimbing2[0].average) + (0.3 * matkul3penguji[0].average))
+        const avgnilaimatkul4 = (((40/100) * matkul4pembimbing1[0].average) + ((40/100) * matkul4pembimbing2[0].average) + (0.3 * matkul4penguji[0].average))
+        const avgnilaimatkul5 = (((40/100) * matkul5pembimbing1[0].average) + ((40/100) * matkul5pembimbing2[0].average) + (0.3 * matkul5penguji[0].average))
+        const avgnilaimatkul6 = (((40/100) * matkul6pembimbing1[0].average) + ((40/100) * matkul6pembimbing2[0].average) + (0.3 * matkul6penguji[0].average))
+
+        const hurufmutumatkul1final = HurufMutu(avgnilaimatkul1)
+        const hurufmutumatkul2final = HurufMutu(avgnilaimatkul2)
+        const hurufmutumatkul3final = HurufMutu(avgnilaimatkul3)
+        const hurufmutumatkul4final = HurufMutu(avgnilaimatkul4)
+        const hurufmutumatkul5final = HurufMutu(avgnilaimatkul5)
+        const hurufmutumatkul6final = HurufMutu(avgnilaimatkul6)
+
+        const totalam1 = AngkaMutu(hurufmutumatkul1final)
+        const totalam2 = AngkaMutu(hurufmutumatkul2final)
+        const totalam3 = AngkaMutu(hurufmutumatkul3final)
+        const totalam4 = AngkaMutu(hurufmutumatkul4final)
+        const totalam5 = AngkaMutu(hurufmutumatkul5final)
+        const totalam6 = AngkaMutu(hurufmutumatkul6final)
         am1 = totalam1
         am2 = totalam2
         am3 = totalam3
