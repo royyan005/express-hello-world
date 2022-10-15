@@ -687,12 +687,12 @@ export const updateIpkMahasiswa = async (req, res) => {
         })
         if (!matkul6penguji) return err
 
-        const avgnilaimatkul1 = parseInt(((matkul1pembimbing1[0].average) + (matkul1pembimbing2[0].average) + (matkul1penguji[0].average))/3)
-        const avgnilaimatkul2 = parseInt(((matkul2pembimbing1[0].average) + (matkul2pembimbing2[0].average) + (matkul2penguji[0].average))/3)
-        const avgnilaimatkul3 = parseInt(((matkul3pembimbing1[0].average) + (matkul3pembimbing2[0].average) + (matkul3penguji[0].average))/3)
-        const avgnilaimatkul4 = parseInt(((matkul4pembimbing1[0].average) + (matkul4pembimbing2[0].average) + (matkul4penguji[0].average))/3)
-        const avgnilaimatkul5 = parseInt(((matkul5pembimbing1[0].average) + (matkul5pembimbing2[0].average) + (matkul5penguji[0].average))/3)
-        const avgnilaimatkul6 = parseInt(((matkul6pembimbing1[0].average) + (matkul6pembimbing2[0].average) + (matkul6penguji[0].average))/3)
+        const avgnilaimatkul1 = parseInt((0.4 * matkul1pembimbing1[0].average) + (0.3 * matkul1pembimbing2[0].average) + (0.3 * matkul1penguji[0].average))
+        const avgnilaimatkul2 = parseInt((0.4 * matkul2pembimbing1[0].average) + (0.3 * matkul2pembimbing2[0].average) + (0.3 * matkul2penguji[0].average))
+        const avgnilaimatkul3 = parseInt((0.4 * matkul3pembimbing1[0].average) + (0.3 * matkul3pembimbing2[0].average) + (0.3 * matkul3penguji[0].average))
+        const avgnilaimatkul4 = parseInt((0.4 * matkul4pembimbing1[0].average) + (0.3 * matkul4pembimbing2[0].average) + (0.3 * matkul4penguji[0].average))
+        const avgnilaimatkul5 = parseInt((0.4 * matkul5pembimbing1[0].average) + (0.3 * matkul5pembimbing2[0].average) + (0.3 * matkul5penguji[0].average))
+        const avgnilaimatkul6 = parseInt((0.4 * matkul6pembimbing1[0].average) + (0.3 * matkul6pembimbing2[0].average) + (0.3 * matkul6penguji[0].average))
 
         const hurufmutumatkul1final = HurufMutu(avgnilaimatkul1)
         const hurufmutumatkul2final = HurufMutu(avgnilaimatkul2)
@@ -714,13 +714,14 @@ export const updateIpkMahasiswa = async (req, res) => {
         am5 = totalam5
         am6 = totalam6
 
-        const totalskspembimbing1 = matkul1pembimbing1[0].sks + matkul2pembimbing1[0].sks + matkul3pembimbing1[0].sks + matkul4pembimbing1[0].sks + matkul5pembimbing1[0].sks + matkul6pembimbing1[0].sks
-        const totalnilaimutupembimbing1 = matkul1pembimbing1[0].nilaimutu + matkul2pembimbing1[0].nilaimutu + matkul3pembimbing1[0].nilaimutu + matkul4pembimbing1[0].nilaimutu + matkul5pembimbing1[0].nilaimutu + matkul6pembimbing1[0].nilaimutu
-        const totalskspembimbing2 = matkul1pembimbing2[0].sks + matkul2pembimbing2[0].sks + matkul3pembimbing2[0].sks + matkul4pembimbing2[0].sks + matkul5pembimbing2[0].sks + matkul6pembimbing2[0].sks
-        const totalnilaimutupembimbing2 = matkul1pembimbing2[0].nilaimutu + matkul2pembimbing2[0].nilaimutu + matkul3pembimbing2[0].nilaimutu + matkul4pembimbing2[0].nilaimutu + matkul5pembimbing2[0].nilaimutu + matkul6pembimbing2[0].nilaimutu
-        const totalskspenguji = matkul1penguji[0].sks + matkul2penguji[0].sks + matkul3penguji[0].sks + matkul4penguji[0].sks + matkul5penguji[0].sks + matkul6penguji[0].sks
-        const totalnilaimutupenguji = matkul1penguji[0].nilaimutu + matkul2penguji[0].nilaimutu + matkul3penguji[0].nilaimutu + matkul4penguji[0].nilaimutu + matkul5penguji[0].nilaimutu + matkul6penguji[0].nilaimutu
-        ipk = (((40/100) * (totalnilaimutupembimbing1/totalskspembimbing1)) + ((40/100) * (totalnilaimutupembimbing2/totalskspembimbing2)) + ((30/100) * (totalnilaimutupenguji/totalskspenguji)))
+        const totalhm1 = totalam1 * 2
+        const totalhm2 = totalam2 * 2
+        const totalhm3 = totalam3 * 2
+        const totalhm4 = totalam4 * 12
+        const totalhm5 = totalam5 * 4
+        const totalhm6 = totalam6 * 2
+
+        ipk = (totalhm1 + totalhm2 + totalhm3 + totalhm4 + totalhm5 + totalhm6) / 24
     } catch (err) {
         return res.status(400).json({
             status: res.statusCode,
