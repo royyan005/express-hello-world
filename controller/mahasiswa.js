@@ -687,12 +687,12 @@ export const updateIpkMahasiswa = async (req, res) => {
         })
         if (!matkul6penguji) return err
 
-        const avgnilaimatkul1 = (((40/100) * matkul1pembimbing1[0].average) + ((40/100) * matkul1pembimbing2[0].average) + (0.3 * matkul1penguji[0].average))
-        const avgnilaimatkul2 = (((40/100) * matkul2pembimbing1[0].average) + ((40/100) * matkul2pembimbing2[0].average) + (0.3 * matkul2penguji[0].average))
-        const avgnilaimatkul3 = (((40/100) * matkul3pembimbing1[0].average) + ((40/100) * matkul3pembimbing2[0].average) + (0.3 * matkul3penguji[0].average))
-        const avgnilaimatkul4 = (((40/100) * matkul4pembimbing1[0].average) + ((40/100) * matkul4pembimbing2[0].average) + (0.3 * matkul4penguji[0].average))
-        const avgnilaimatkul5 = (((40/100) * matkul5pembimbing1[0].average) + ((40/100) * matkul5pembimbing2[0].average) + (0.3 * matkul5penguji[0].average))
-        const avgnilaimatkul6 = (((40/100) * matkul6pembimbing1[0].average) + ((40/100) * matkul6pembimbing2[0].average) + (0.3 * matkul6penguji[0].average))
+        const avgnilaimatkul1 = parseInt(((matkul1pembimbing1[0].average) + (matkul1pembimbing2[0].average) + (matkul1penguji[0].average))/3)
+        const avgnilaimatkul2 = parseInt(((matkul2pembimbing1[0].average) + (matkul2pembimbing2[0].average) + (matkul2penguji[0].average))/3)
+        const avgnilaimatkul3 = parseInt(((matkul3pembimbing1[0].average) + (matkul3pembimbing2[0].average) + (matkul3penguji[0].average))/3)
+        const avgnilaimatkul4 = parseInt(((matkul4pembimbing1[0].average) + (matkul4pembimbing2[0].average) + (matkul4penguji[0].average))/3)
+        const avgnilaimatkul5 = parseInt(((matkul5pembimbing1[0].average) + (matkul5pembimbing2[0].average) + (matkul5penguji[0].average))/3)
+        const avgnilaimatkul6 = parseInt(((matkul6pembimbing1[0].average) + (matkul6pembimbing2[0].average) + (matkul6penguji[0].average))/3)
 
         const hurufmutumatkul1final = HurufMutu(avgnilaimatkul1)
         const hurufmutumatkul2final = HurufMutu(avgnilaimatkul2)
