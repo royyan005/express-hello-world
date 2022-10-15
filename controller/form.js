@@ -36,7 +36,7 @@ export const postMatkul1 = async (req, res) => {
     })
 
     const total = sub1 + sub2 + sub3 + sub4
-    const average = total / 4
+    const average = parseInt(total / 4)
     var hurufmutu = ''
     hurufmutu = HurufMutu(average)
     if (hurufmutu == '') {
@@ -141,7 +141,7 @@ export const postMatkul2 = async (req, res) => {
     })
 
     const total = sub1 + sub2 + sub3
-    const average = total / 3
+    const average = parseInt(total / 3)
     var hurufmutu = ''
     hurufmutu = HurufMutu(average)
     if (hurufmutu == '') {
@@ -249,7 +249,7 @@ export const postMatkul3 = async (req, res) => {
 
     const sub2 = (sub21 + sub22 + sub23 + sub24) / 4
     const total = sub1 + sub2
-    const average = total / 2
+    const average = parseInt(total / 2)
     var hurufmutu = ''
     hurufmutu = HurufMutu(average)
     if (hurufmutu == '') {
@@ -360,7 +360,7 @@ export const postMatkul4 = async (req, res) => {
 
     const sub1 = (sub11 + sub12 + sub13 + sub14) / 4
     const total = sub1
-    const average = total
+    const average = parseInt(total)
     var hurufmutu = ''
     hurufmutu = HurufMutu(average)
     if (hurufmutu == '') {
@@ -466,7 +466,7 @@ export const postMatkul5 = async (req, res) => {
     })
 
     const total = sub1 + sub2 + sub3
-    const average = total / 3
+    const average = parseInt(total / 3)
     var hurufmutu = ''
     hurufmutu = HurufMutu(average)
     if (hurufmutu == '') {
