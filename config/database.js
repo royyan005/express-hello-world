@@ -1,7 +1,7 @@
 import { Sequelize } from "sequelize";
 
-const db = new Sequelize('app-ppi','root','123123',{
-    host: "23.251.150.1",
+const db = new Sequelize('app_ppi','user1','123123123',{
+    host: "34.69.207.6",
     dialect: "mysql",
     // dialectOptions: {
     //     ssl: {
